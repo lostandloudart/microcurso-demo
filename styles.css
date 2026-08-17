@@ -15,6 +15,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: radial-gradient(circle at 92% 4%, rgba(154, 198, 91, 0.18), transparent 26rem), var(--paper);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -44,7 +45,7 @@ button, summary { cursor: pointer; }
 .progress-track { height: 0.45rem; margin-top: 0.25rem; overflow: hidden; border-radius: 99px; background: #dfe4d7; }
 #progress-fill { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--forest); transition: width 220ms ease; }
 
-main, footer { width: min(76rem, calc(100% - 2.5rem)); margin-inline: auto; }
+main, footer { width: min(74rem, calc(100% - 2.5rem)); margin-inline: auto; }
 .hero { position: relative; isolation: isolate; max-width: 67rem; padding: clamp(5rem, 10vw, 9rem) 0 clamp(4rem, 8vw, 7rem); }
 .hero::after { position: absolute; z-index: -1; right: -1rem; bottom: 2rem; width: 13rem; height: 13rem; border: 1.25rem solid rgba(23, 75, 59, 0.08); border-radius: 70% 20% 70% 30%; content: ""; transform: rotate(18deg); }
 .eyebrow, .section-number, .activity-label { margin: 0 0 0.7rem; color: var(--forest); font-size: 0.78rem; font-weight: 820; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -73,10 +74,10 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .course-map strong { align-self: end; font-size: 1.05rem; }
 .course-map small { color: var(--muted); }
 
-.module { scroll-margin-top: 5.5rem; margin-bottom: 5rem; padding: clamp(1.4rem, 5vw, 4.5rem); border: 1px solid var(--line); border-radius: 1.35rem; background: var(--surface); box-shadow: var(--shadow); }
+.module { scroll-margin-top: 5.5rem; margin-bottom: 5rem; padding: clamp(1.4rem, 4.5vw, 4rem); border: 1px solid var(--line); border-radius: 1.35rem; background: var(--surface); box-shadow: var(--shadow); }
 .module[data-complete="true"] { border-color: rgba(23, 107, 66, 0.55); }
-.module-header { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; margin-bottom: 2rem; }
-.module-number { color: #c4d0bd; font-family: Georgia, "Times New Roman", serif; font-size: clamp(4rem, 8vw, 7rem); line-height: 0.85; }
+.module-header { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.75rem; align-items: start; margin-bottom: 2.25rem; }
+.module-number { color: #c4d0bd; font-family: Georgia, "Times New Roman", serif; font-size: clamp(4.5rem, 7vw, 6.4rem); line-height: 0.82; }
 .module-header h2 { max-width: 18ch; }
 .module h2[tabindex="-1"]:focus { outline: 0; text-decoration-line: underline; text-decoration-color: var(--sun); text-decoration-thickness: 0.07em; text-underline-offset: 0.12em; }
 .module-objective { max-width: 48rem; color: var(--muted); font-size: 1.05rem; }
@@ -85,10 +86,10 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .time-plan span { padding: 0.85rem; color: var(--muted); font-size: 0.85rem; text-align: center; }
 .time-plan span + span { border-left: 1px solid var(--line); }
 .time-plan strong { color: var(--forest); }
-.module-section { max-width: 66rem; margin: 0 auto 3.5rem; }
-.module-section > p { max-width: 56rem; }
+.module-section { max-width: 62rem; margin: 0 auto 3.5rem; }
+.module-section > p { max-width: 53rem; }
 .split-section { display: grid; grid-template-columns: 1.6fr 0.9fr; gap: 2rem; max-width: none; }
-.story-opening { position: relative; max-width: 61rem; margin: 0 auto 3.5rem; padding: 2rem 2.2rem 2rem 5rem; border-radius: 0.9rem; color: white; background: var(--forest-dark); }
+.story-opening { position: relative; max-width: 58rem; margin: 0 auto 3.5rem; padding: 1.8rem 2.2rem 1.8rem 4.8rem; border-radius: 0.9rem; color: white; background: var(--forest-dark); }
 .story-opening::before { position: absolute; top: 0.7rem; left: 1.3rem; color: rgba(217, 237, 185, 0.35); content: "“"; font-family: Georgia, "Times New Roman", serif; font-size: 6rem; line-height: 1; }
 .story-opening span, .story-label { display: block; margin-bottom: 0.55rem; color: #d9edb9; font-size: 0.73rem; font-weight: 820; letter-spacing: 0.11em; text-transform: uppercase; }
 .story-opening p { margin-bottom: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.45; }
@@ -99,13 +100,16 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .concept-trio span { color: var(--forest); font-family: Georgia, "Times New Roman", serif; font-size: 2.2rem; line-height: 1; }
 .conditions-list span { color: var(--muted); font-size: 0.86rem; }
 
-.visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; margin: 0 0 3.5rem; }
-.source-figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 0.9rem; background: #f0f1e9; }
-.source-figure img { width: 100%; height: auto; object-fit: contain; background: white; }
+.visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; align-items: start; max-width: 53rem; margin: 0 auto 3.5rem; }
+.source-figure { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 0.9rem; background: #f0f1e9; box-shadow: 0 10px 26px rgba(23, 50, 41, 0.06); }
+.source-figure img { width: 100%; height: auto; max-height: 28rem; object-fit: contain; background: white; }
 .source-figure figcaption { padding: 0.85rem 1rem; color: var(--muted); font-size: 0.82rem; }
-.wide-figure { max-width: 60rem; margin: 0 auto 3.5rem; }
-.diagram-figure { max-width: 48rem; margin: 0 auto 3.5rem; }
-.tall-figure { max-width: 36rem; }
+.wide-figure { max-width: 41rem; margin: 0 auto 3.5rem; }
+.wide-figure img { max-height: 29rem; }
+.diagram-figure { max-width: 35rem; margin: 0 auto 3.5rem; }
+.diagram-figure img { max-height: 27rem; }
+.tall-figure { max-width: 24rem; }
+.tall-figure img { max-height: 30rem; }
 
 .activity-card, .concept-card, .visual-prompt { padding: 1.5rem; border-radius: 0.85rem; background: #edf1e5; }
 .activity-card { border-left: 0.35rem solid var(--sun); background: #fff5dd; }
@@ -150,7 +154,7 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .final-chapter { border-color: rgba(23, 75, 59, 0.35); background: #e3ecd8; }
 .module-quiz { margin-top: 3rem; padding: clamp(1.25rem, 4vw, 2.5rem); border-radius: 1rem; color: #f8f5ec; background: var(--forest-dark); }
 .module-quiz h3 { color: white; }
-.module-quiz fieldset { margin: 1.25rem 0; padding: 1.25rem; border: 1px solid rgba(255,255,255,0.24); border-radius: 0.75rem; }
+.module-quiz fieldset { margin: 1.25rem 0; padding: 1.25rem; border: 1px solid rgba(255,255,255,0.24); border-radius: 0.75rem; background: rgba(255,255,255,0.035); }
 .module-quiz legend { padding: 0 0.5rem; font-weight: 760; }
 .module-quiz label { display: block; margin-top: 0.65rem; padding: 0.65rem 0.75rem; border-radius: 0.5rem; background: rgba(255,255,255,0.06); cursor: pointer; }
 .module-quiz label:hover { background: rgba(255,255,255,0.12); }
@@ -173,6 +177,7 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
 .text-button { padding: 0; border: 0; color: var(--forest); background: transparent; text-decoration: underline; text-underline-offset: 0.2rem; }
 
 @media (max-width: 850px) {
+  .hero::after { display: none; }
   .course-map { grid-template-columns: 1fr 1fr; }
   .time-plan { grid-template-columns: 1fr 1fr; }
   .time-plan span:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
@@ -180,24 +185,56 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
   .split-section { grid-template-columns: 1fr; }
   .order-grid { grid-template-columns: 1fr; }
   .module-statuses { grid-template-columns: 1fr 1fr; }
+  .module-header { grid-template-columns: 1fr; gap: 0.75rem; }
+  .module-number { font-size: 4.5rem; }
+  .module-header h2 { max-width: 20ch; }
+  .visual-grid { max-width: 42rem; }
+  .wide-figure { max-width: 34rem; }
+  .diagram-figure { max-width: 32rem; }
+  .tall-figure { max-width: 23rem; }
 }
 
 @media (max-width: 650px) {
   .site-header { gap: 1rem; }
   .brand span:last-child { display: none; }
-  .hero::after { display: none; }
   .learning-goal, .course-map, .visual-grid, .concept-trio, .conditions-list, .comparison-cards { grid-template-columns: 1fr; }
   .learning-goal { gap: 1rem; }
-  .module-header { grid-template-columns: 1fr; gap: 1rem; }
-  .module-number { font-size: 4.5rem; }
-  .comparison-table { overflow-x: auto; }
-  .comparison-table > div { min-width: 38rem; }
+  .module-number { font-size: 3.8rem; }
+  .comparison-table { overflow: hidden; border: 0; }
+  .comparison-table .table-head { display: none; }
+  .comparison-table > div { grid-template-columns: 1fr; border: 1px solid var(--line); border-radius: 0.75rem; overflow: hidden; }
+  .comparison-table > div + div { margin-top: 0.8rem; border-top: 1px solid var(--line); }
+  .comparison-table > div > * { padding: 0.72rem 0.9rem; }
+  .comparison-table strong { color: var(--forest); }
+  .comparison-table span { display: grid; grid-template-columns: minmax(7.5rem, 0.8fr) 1fr; gap: 0.8rem; align-items: start; background: var(--surface); }
+  .comparison-table span + span { border-top: 1px solid var(--line); }
+  .comparison-table span::before { color: var(--muted); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+  .comparison-table span:nth-child(2)::before { content: "Monocotiledóneas"; }
+  .comparison-table span:nth-child(3)::before { content: "Dicotiledóneas"; }
   .process-line { align-items: stretch; flex-direction: column; }
   .process-line i { align-self: center; transform: rotate(90deg); }
-  .story-opening { padding: 4rem 1.5rem 1.5rem; }
+  .story-opening { padding: 3.7rem 1.35rem 1.4rem; }
   .story-opening::before { top: 0.45rem; left: 1.2rem; }
+  .story-opening p { font-size: 1.2rem; }
+  .source-figure img, .wide-figure img, .diagram-figure img { max-height: 23rem; }
+  .tall-figure { max-width: 22rem; }
+  .tall-figure img { max-height: 27rem; }
+  .module-quiz fieldset { padding: 1rem; }
+  .module-quiz label { padding: 0.75rem; }
   .module-statuses { grid-template-columns: 1fr; }
   footer { flex-direction: column; }
+}
+
+@media (max-width: 430px) {
+  main, footer { width: min(100% - 1.25rem, 74rem); }
+  .site-header { padding-inline: 0.75rem; }
+  .header-progress { width: min(13rem, 62vw); }
+  .hero { padding-top: 4rem; }
+  h1 { font-size: clamp(2.65rem, 14vw, 3.4rem); }
+  h2 { font-size: clamp(2rem, 11vw, 2.7rem); }
+  .module { border-radius: 1rem; }
+  .time-plan span { padding-inline: 0.55rem; font-size: 0.78rem; }
+  .comparison-table span { grid-template-columns: 1fr; gap: 0.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
