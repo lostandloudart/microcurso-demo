@@ -1,2 +1,11 @@
 .DS_Store
 tmp/
+node_modules/
+
+# Fuentes bibliográficas: se conservan localmente en Dropbox, no se publican.
+01_FUENTES/PDF/
+
+# Material visual de trabajo. Las versiones aprobadas sí se versionan en 03_web y docs.
+03_IMAGENES/**/01_originales/
+03_IMAGENES/**/02_recortes/
+04_REVISION/*.jpg
