@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Microcurso de 20 minutos sobre estructura, clasificación y germinación de las semillas."
+    />
+    <title>Semillas | Microcurso</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Inicio del microcurso">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>Microcurso botánico</span>
+      </a>
+      <div class="header-progress" aria-label="Progreso del curso">
+        <span id="progress-label">0% completado</span>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-labelledby="progress-label"
+        >
+          <span id="progress-fill"></span>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" id="inicio" aria-labelledby="course-title">
+        <div class="eyebrow">Módulo único · 20 minutos</div>
+        <h1 id="course-title">Semillas: estructura, clasificación y germinación</h1>
+        <p class="hero-intro">
+          Una introducción breve para reconocer qué es una semilla, cómo se clasifican
+          las plantas que las producen y qué condiciones permiten la germinación.
+        </p>
+        <div class="course-meta" aria-label="Información del curso">
+          <span>4 lecciones</span>
+          <span>5 preguntas</span>
+          <span>Fuente única</span>
+        </div>
+        <button class="primary-button" id="start-course" type="button">
+          Comenzar el curso
+        </button>
+      </section>
+
+      <section class="learning-goal" aria-labelledby="goal-title">
+        <p class="section-number">Propósito</p>
+        <h2 id="goal-title">Al finalizar podrás</h2>
+        <p>
+          Describir la composición básica de una semilla, diferenciar los principales
+          grupos presentados en el material y reconocer las condiciones señaladas para
+          que se produzca la germinación.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lecciones del módulo">
+        <ol>
+          <li><a href="#leccion-1">Qué es una semilla</a></li>
+          <li><a href="#leccion-2">Dos grandes grupos</a></li>
+          <li><a href="#leccion-3">Angiospermas</a></li>
+          <li><a href="#leccion-4">Viabilidad y germinación</a></li>
+          <li><a href="#evaluacion">Comprobación final</a></li>
+        </ol>
+      </nav>
+
+      <article class="lesson" id="leccion-1" data-track="lesson-1">
+        <header class="lesson-heading">
+          <p class="section-number">Lección 1 · 4 minutos</p>
+          <h2>Qué es una semilla</h2>
+        </header>
+        <div class="lesson-grid">
+          <div>
+            <p class="lead">
+              Una semilla es una estructura compuesta por un embrión vegetal, alimento
+              para ese embrión y una cubierta externa.
+            </p>
+            <p>
+              El material también la presenta como el embrión de la planta una vez que
+              alcanzó la madurez. Puede estar acompañada por tejidos nutritivos y
+              protegida por una cubierta o testa.
+            </p>
+            <p>
+              El alimento almacenado proporciona energía durante las etapas tempranas
+              del crecimiento. En las plantas de semilla, la fecundación no necesita
+              agua.
+            </p>
+          </div>
+          <aside class="concept-card" aria-labelledby="components-title">
+            <h3 id="components-title">Tres componentes</h3>
+            <ol>
+              <li><strong>Embrión vegetal</strong></li>
+              <li><strong>Alimento para el embrión</strong></li>
+              <li><strong>Cubierta externa</strong></li>
+            </ol>
+          </aside>
+        </div>
+        <details class="source-note">
+          <summary>Ver respaldo bibliográfico</summary>
+          <p>Definición y componentes: página 4. Adaptaciones y alimento almacenado: página 5.</p>
+        </details>
+        <button class="complete-button" type="button" data-complete="lesson-1">
+          Marcar lección como completada
+        </button>
+      </article>
+
+      <article class="lesson" id="leccion-2" data-track="lesson-2">
+        <header class="lesson-heading">
+          <p class="section-number">Lección 2 · 4 minutos</p>
+          <h2>Dos grandes grupos</h2>
+        </header>
+        <p class="lead">
+          Las plantas de semillas se dividen en dos grupos según el lugar donde se
+          desarrolla la semilla.
+        </p>
+        <div class="comparison" aria-label="Comparación de grupos de plantas de semilla">
+          <section>
+            <span class="comparison-tag">Semilla dentro del fruto</span>
+            <h3>Angiospermas</h3>
+            <p>
+              Sus semillas se desarrollan dentro de una estructura llamada fruta. Los
+              óvulos se encuentran encerrados en una cavidad u ovario que, después de
+              la fecundación, da lugar a un fruto.
+            </p>
+          </section>
+          <section>
+            <span class="comparison-tag">Semilla desnuda</span>
+            <h3>Gimnospermas</h3>
+            <p>
+              Sus semillas no se desarrollan dentro de frutos. El material distingue
+              los órdenes Cycadales, Ginkgoales y Coniferales.
+            </p>
+          </section>
+        </div>
+        <div class="callout">
+          <strong>Coníferas:</strong> se describen como el grupo más familiar e
+          importante de las gimnospermas. Usualmente producen conos que contienen las
+          semillas y crecen como árboles o arbustos.
+        </div>
+        <details class="source-note">
+          <summary>Ver respaldo bibliográfico</summary>
+          <p>
+            División general: página 9. Gimnospermas y órdenes: páginas 10–11.
+            Coníferas: página 13. Angiospermas, ovario y fruto: página 18.
+          </p>
+        </details>
+        <button class="complete-button" type="button" data-complete="lesson-2">
+          Marcar lección como completada
+        </button>
+      </article>
+
+      <article class="lesson" id="leccion-3" data-track="lesson-3">
+        <header class="lesson-heading">
+          <p class="section-number">Lección 3 · 4 minutos</p>
+          <h2>Angiospermas: dos subclases</h2>
+        </header>
+        <p class="lead">
+          El material divide las angiospermas en monocotiledóneas y dicotiledóneas.
+          La diferencia central presentada es la cantidad de hojas primarias o
+          cotiledones de la semilla.
+        </p>
+        <div class="cotyledon-grid">
+          <section>
+            <span class="big-number" aria-hidden="true">1</span>
+            <h3>Monocotiledóneas</h3>
+            <p>La semilla contiene una hoja primaria.</p>
+            <p>La producción de tejido leñoso es rara.</p>
+          </section>
+          <section>
+            <span class="big-number" aria-hidden="true">2</span>
+            <h3>Dicotiledóneas</h3>
+            <p>Cada semilla posee dos hojas primarias.</p>
+            <p>El engrosamiento del tallo ocasiona la producción de tejido leñoso.</p>
+          </section>
+        </div>
+        <p>
+          El documento señala otras diferencias, como el patrón de las venas de las
+          hojas y el número de partes florales de la planta.
+        </p>
+        <details class="source-note">
+          <summary>Ver respaldo bibliográfico</summary>
+          <p>Clasificación: páginas 23–24. Diferencias adicionales y tejido leñoso: página 25.</p>
+        </details>
+        <button class="complete-button" type="button" data-complete="lesson-3">
+          Marcar lección como completada
+        </button>
+      </article>
+
+      <article class="lesson" id="leccion-4" data-track="lesson-4">
+        <header class="lesson-heading">
+          <p class="section-number">Lección 4 · 4 minutos</p>
+          <h2>Viabilidad y germinación</h2>
+        </header>
+        <div class="definition-block">
+          <h3>Viabilidad</h3>
+          <p>
+            Una semilla viable es capaz de germinar y transformarse en un organismo
+            sano. Cada especie botánica tiene su propio período de viabilidad.
+          </p>
+        </div>
+        <div class="definition-block">
+          <h3>Germinación</h3>
+          <p>
+            Es el proceso por el que se reanuda el crecimiento embrionario después de
+            la fase de descanso. Comienza cuando la semilla llega a un medio favorable.
+          </p>
+        </div>
+        <h3 class="conditions-title">Condiciones determinantes del medio</h3>
+        <ul class="conditions-list">
+          <li>Aporte suficiente de agua</li>
+          <li>Aporte suficiente de oxígeno</li>
+          <li>Temperatura apropiada</li>
+        </ul>
+        <p>
+          Algunas semillas también necesitan un tiempo determinado de exposición a la
+          luz. Durante la germinación, el agua atraviesa las envolturas, llega al
+          embrión y hace que la semilla se hinche, incluso hasta rasgar la cubierta
+          externa.
+        </p>
+        <details class="source-note">
+          <summary>Ver respaldo bibliográfico</summary>
+          <p>Viabilidad: página 30. Germinación y condiciones: páginas 31–32.</p>
+        </details>
+        <button class="complete-button" type="button" data-complete="lesson-4">
+          Marcar lección como completada
+        </button>
+      </article>
+
+      <section class="quiz" id="evaluacion" aria-labelledby="quiz-title" data-track="quiz">
+        <p class="section-number">Comprobación final · 4 minutos</p>
+        <h2 id="quiz-title">Cinco preguntas para recuperar lo aprendido</h2>
+        <p>Seleccioná una respuesta por pregunta. Podés intentarlo nuevamente.</p>
+
+        <form id="quiz-form">
+          <fieldset data-answer="b" data-source="Página 4">
+            <legend>1. ¿Qué conjunto corresponde a los componentes de una semilla?</legend>
+            <label><input type="radio" name="q1" value="a" /> Raíz, tallo y hoja</label>
+            <label><input type="radio" name="q1" value="b" /> Embrión, alimento y cubierta externa</label>
+            <label><input type="radio" name="q1" value="c" /> Ovario, flor y fruto</label>
+            <p class="question-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset data-answer="a" data-source="Página 9">
+            <legend>2. ¿Dónde se desarrollan las semillas de las angiospermas?</legend>
+            <label><input type="radio" name="q2" value="a" /> Dentro de una estructura llamada fruta</label>
+            <label><input type="radio" name="q2" value="b" /> Siempre dentro de un cono</label>
+            <label><input type="radio" name="q2" value="c" /> Fuera de cualquier estructura</label>
+            <p class="question-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset data-answer="c" data-source="Páginas 10–11">
+            <legend>3. ¿Qué grupo enumera los órdenes Cycadales, Ginkgoales y Coniferales?</legend>
+            <label><input type="radio" name="q3" value="a" /> Dicotiledóneas</label>
+            <label><input type="radio" name="q3" value="b" /> Angiospermas</label>
+            <label><input type="radio" name="q3" value="c" /> Gimnospermas</label>
+            <p class="question-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset data-answer="a" data-source="Página 24">
+            <legend>4. ¿Cuántas hojas primarias contiene la semilla de una monocotiledónea?</legend>
+            <label><input type="radio" name="q4" value="a" /> Una</label>
+            <label><input type="radio" name="q4" value="b" /> Dos</label>
+            <label><input type="radio" name="q4" value="c" /> Tres</label>
+            <p class="question-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset data-answer="b" data-source="Página 31">
+            <legend>5. ¿Qué combinación reúne las condiciones determinantes señaladas para germinar?</legend>
+            <label><input type="radio" name="q5" value="a" /> Fruto, polen y viento</label>
+            <label><input type="radio" name="q5" value="b" /> Agua, oxígeno y temperatura apropiada</label>
+            <label><input type="radio" name="q5" value="c" /> Suelo seco, calor extremo y oscuridad</label>
+            <p class="question-feedback" aria-live="polite"></p>
+          </fieldset>
+
+          <button class="primary-button" type="submit">Comprobar respuestas</button>
+          <div id="quiz-result" class="quiz-result" role="status" tabindex="-1"></div>
+        </form>
+      </section>
+
+      <section class="bibliography" id="bibliografia" aria-labelledby="bibliography-title">
+        <p class="section-number">Trazabilidad</p>
+        <h2 id="bibliography-title">Fuente del microcurso</h2>
+        <p>
+          <cite>Generalidades de las semillas</cite>, presentación de 32 páginas.
+          Este prototipo utiliza exclusivamente información contenida en ese documento.
+          Las referencias pueden desplegarse dentro de cada lección.
+        </p>
+        <p class="integrity-note">
+          Cuando el documento no desarrolla un tema, el curso no lo completa con
+          información externa.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Prototipo educativo · Contenido trazable a una fuente única</p>
+      <button id="reset-progress" class="text-button" type="button">Reiniciar progreso</button>
+    </footer>
+  </body>
+</html>

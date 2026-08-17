@@ -1,0 +1,35 @@
+{
+  "course": "Semillas: estructura, clasificación y germinación",
+  "source": {
+    "title": "Generalidades de las semillas",
+    "pages": 32,
+    "included_in_repository": false
+  },
+  "sections": [
+    {
+      "id": "lesson-1",
+      "title": "Qué es una semilla",
+      "source_pages": [4, 5]
+    },
+    {
+      "id": "lesson-2",
+      "title": "Dos grandes grupos",
+      "source_pages": [9, 10, 11, 13, 18]
+    },
+    {
+      "id": "lesson-3",
+      "title": "Angiospermas: dos subclases",
+      "source_pages": [23, 24, 25]
+    },
+    {
+      "id": "lesson-4",
+      "title": "Viabilidad y germinación",
+      "source_pages": [30, 31, 32]
+    },
+    {
+      "id": "quiz",
+      "title": "Comprobación final",
+      "source_pages": [4, 9, 10, 11, 24, 31]
+    }
+  ]
+}
