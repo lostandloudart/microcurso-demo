@@ -73,19 +73,29 @@ Cada parte debe tener:
 
 ## 5. Duración
 
-Cada módulo debe durar aproximadamente 30 minutos.
+Cada módulo debe durar entre 20 y 30 minutos.
+
+La duración se define según la cantidad y la complejidad del contenido disponible. Un tema acotado puede resolverse en 20 minutos; un proceso con más conceptos, imágenes o relaciones puede extenderse hasta 30 minutos. No se debe alargar un módulo mediante repeticiones ni comprimir un tema que necesita mayor desarrollo.
 
 Distribución sugerida:
 
 | Bloque | Duración | Propósito |
 |---|---:|---|
-| Historia y explicación | 10 min | Introducir y desarrollar el tema |
-| Conceptos principales | 6 min | Aclarar términos y relaciones |
-| Observación guiada | 5 min | Leer imágenes, esquemas o ejemplos |
-| Actividad de aplicación | 6 min | Recuperar y utilizar lo aprendido |
-| Comprobación | 3 min | Verificar la comprensión |
+| Historia y explicación | 7-10 min | Introducir y desarrollar el tema |
+| Conceptos principales | 4-6 min | Aclarar términos y relaciones |
+| Observación guiada | 3-5 min | Leer imágenes, esquemas o ejemplos |
+| Actividad de aplicación | 4-6 min | Recuperar y utilizar lo aprendido |
+| Comprobación | 2-3 min | Verificar la comprensión |
 
-Una parte formada por cuatro módulos tendrá una duración aproximada de dos horas, sin contar su evaluación integradora.
+Una parte formada por cuatro módulos tendrá una duración aproximada de 80 a 120 minutos, sin contar su evaluación integradora.
+
+La duración elegida debe declararse al comienzo de cada módulo y coincidir con la cantidad real de lectura, observación, práctica y evaluación.
+
+Criterio orientativo:
+
+- **20 minutos:** una idea central, pocos conceptos y una actividad breve.
+- **25 minutos:** varias ideas relacionadas, una imagen o comparación y una actividad de aplicación.
+- **30 minutos:** un proceso complejo, múltiples conceptos, observación guiada y una actividad más desarrollada.
 
 ## 6. Estructura obligatoria de cada módulo
 
@@ -95,7 +105,7 @@ Una parte formada por cuatro módulos tendrá una duración aproximada de dos ho
 - Duración estimada.
 - Pregunta intrigante que abra el tema.
 - Objetivo expresado desde lo que podrá hacer el estudiante.
-- Distribución visual de los 30 minutos.
+- Distribución visual del tiempo estimado.
 
 ### 6.2. Escena inicial
 
@@ -318,7 +328,7 @@ El proyecto no debe depender de servicios pagos para funcionar.
 - Formular el objetivo general.
 - Definir una pregunta central por parte.
 - Definir una pregunta narrativa por módulo.
-- Distribuir el contenido en módulos de 30 minutos.
+- Distribuir el contenido en módulos de 20 a 30 minutos.
 - Diseñar observaciones, actividades y evaluaciones.
 
 ### Etapa 5. Redacción
@@ -404,4 +414,3 @@ Crear un inventario del material bibliográfico y una tabla con estas columnas:
 |---|---|---|---|---|---|---|
 
 A partir de ese inventario se puede diseñar el mapa completo del curso antes de redactar nuevos módulos.
-
