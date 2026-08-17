@@ -1,5 +1,5 @@
-const storageKey = "microcurso-semillas-progress-v1";
-const completionIds = ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "quiz"];
+const storageKey = "curso-semillas-progress-v2";
+const moduleIds = ["module-1", "module-2", "module-3", "module-4"];
 
 function loadProgress() {
   try {
@@ -16,87 +16,90 @@ function saveProgress() {
 }
 
 function updateProgressDisplay() {
-  const completed = completionIds.filter((id) => progress[id]).length;
-  const percentage = Math.round((completed / completionIds.length) * 100);
+  const completed = moduleIds.filter((id) => progress[id]).length;
+  const percentage = Math.round((completed / moduleIds.length) * 100);
   const label = document.querySelector("#progress-label");
   const bar = document.querySelector(".progress-track");
 
-  label.textContent = `${percentage}% completado`;
+  label.textContent = `${completed} de ${moduleIds.length} módulos`;
   bar.setAttribute("aria-valuenow", String(percentage));
   document.querySelector("#progress-fill").style.width = `${percentage}%`;
 
-  document.querySelectorAll("[data-complete]").forEach((button) => {
-    const done = Boolean(progress[button.dataset.complete]);
-    button.setAttribute("aria-pressed", String(done));
-    button.textContent = done ? "Lección completada" : "Marcar lección como completada";
+  moduleIds.forEach((id, index) => {
+    const complete = Boolean(progress[id]);
+    const module = document.querySelector(`[data-module="${id}"]`);
+    const status = document.querySelector(`[data-status="${id}"]`);
+    module.dataset.complete = String(complete);
+    status.textContent = complete ? `Módulo ${index + 1} completado` : `Módulo ${index + 1} pendiente`;
+    status.classList.toggle("complete", complete);
   });
+
+  document.querySelector("#completion-message").textContent =
+    completed === moduleIds.length
+      ? "Recorrido completo: aprobaste las comprobaciones de los cuatro módulos."
+      : `Completaste ${completed} de ${moduleIds.length} módulos. Continuá con las comprobaciones pendientes.`;
 }
 
 document.querySelector("#start-course").addEventListener("click", () => {
-  document.querySelector("#leccion-1").scrollIntoView();
-  document.querySelector("#leccion-1 h2").setAttribute("tabindex", "-1");
-  document.querySelector("#leccion-1 h2").focus({ preventScroll: true });
+  const heading = document.querySelector("#modulo-1 h2");
+  document.querySelector("#modulo-1").scrollIntoView();
+  heading.setAttribute("tabindex", "-1");
+  heading.focus({ preventScroll: true });
 });
 
-document.querySelectorAll("[data-complete]").forEach((button) => {
-  button.addEventListener("click", () => {
-    const id = button.dataset.complete;
-    progress[id] = !progress[id];
-    saveProgress();
-    updateProgressDisplay();
-  });
-});
+document.querySelectorAll("[data-module-quiz]").forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const fieldsets = [...form.querySelectorAll("fieldset")];
+    const moduleId = form.dataset.moduleQuiz;
+    let correct = 0;
+    let unanswered = 0;
 
-document.querySelector("#quiz-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const fieldsets = [...event.currentTarget.querySelectorAll("fieldset")];
-  let correct = 0;
-  let unanswered = 0;
+    fieldsets.forEach((fieldset) => {
+      const selected = fieldset.querySelector("input:checked");
+      const feedback = fieldset.querySelector(".question-feedback");
+      feedback.classList.remove("correct", "incorrect");
 
-  fieldsets.forEach((fieldset) => {
-    const selected = fieldset.querySelector("input:checked");
-    const feedback = fieldset.querySelector(".question-feedback");
-    const source = fieldset.dataset.source;
+      if (!selected) {
+        unanswered += 1;
+        feedback.textContent = "Seleccioná una respuesta.";
+        feedback.classList.add("incorrect");
+        return;
+      }
 
-    feedback.classList.remove("correct", "incorrect");
-    if (!selected) {
-      unanswered += 1;
-      feedback.textContent = "Seleccioná una respuesta.";
-      feedback.classList.add("incorrect");
-      return;
-    }
+      if (selected.value === fieldset.dataset.answer) {
+        correct += 1;
+        feedback.textContent = `Correcto. Respaldo: ${fieldset.dataset.source}.`;
+        feedback.classList.add("correct");
+      } else {
+        feedback.textContent = `Revisá la respuesta. Respaldo: ${fieldset.dataset.source}.`;
+        feedback.classList.add("incorrect");
+      }
+    });
 
-    if (selected.value === fieldset.dataset.answer) {
-      correct += 1;
-      feedback.textContent = `Correcto. Respaldo: ${source}.`;
-      feedback.classList.add("correct");
+    const result = form.querySelector(".quiz-result");
+    if (unanswered) {
+      result.textContent = `Faltan ${unanswered} ${unanswered === 1 ? "respuesta" : "respuestas"}.`;
+    } else if (correct === fieldsets.length) {
+      result.textContent = `Módulo aprobado: ${correct} de ${fieldsets.length} respuestas correctas.`;
+      progress[moduleId] = true;
+      saveProgress();
+      updateProgressDisplay();
     } else {
-      feedback.textContent = `Revisá la respuesta. Respaldo: ${source}.`;
-      feedback.classList.add("incorrect");
+      result.textContent = `Resultado: ${correct} de ${fieldsets.length}. Revisá las referencias e intentá nuevamente.`;
     }
+    result.focus();
   });
-
-  const result = document.querySelector("#quiz-result");
-  if (unanswered > 0) {
-    result.textContent = `Faltan ${unanswered} ${unanswered === 1 ? "respuesta" : "respuestas"}.`;
-  } else {
-    result.textContent = `Resultado: ${correct} de ${fieldsets.length} respuestas correctas.`;
-    progress.quiz = true;
-    saveProgress();
-    updateProgressDisplay();
-  }
-  result.focus();
 });
 
 document.querySelector("#reset-progress").addEventListener("click", () => {
   progress = {};
   localStorage.removeItem(storageKey);
-  document.querySelector("#quiz-form").reset();
-  document.querySelectorAll(".question-feedback").forEach((item) => {
+  document.querySelectorAll(".module-quiz").forEach((form) => form.reset());
+  document.querySelectorAll(".question-feedback, .quiz-result").forEach((item) => {
     item.textContent = "";
     item.classList.remove("correct", "incorrect");
   });
-  document.querySelector("#quiz-result").textContent = "";
   updateProgressDisplay();
 });
 

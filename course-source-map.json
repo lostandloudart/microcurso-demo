@@ -1,5 +1,6 @@
 {
-  "course": "Semillas: estructura, clasificación y germinación",
+  "course": "Generalidades de las semillas",
+  "duration_minutes": 60,
   "source": {
     "title": "Generalidades de las semillas",
     "pages": 32,
@@ -7,29 +8,28 @@
   },
   "sections": [
     {
-      "id": "lesson-1",
-      "title": "Qué es una semilla",
-      "source_pages": [4, 5]
+      "id": "module-1",
+      "title": "La semilla: estructura y adaptaciones",
+      "duration_minutes": 15,
+      "source_pages": [3, 4, 5, 6, 7, 8]
     },
     {
-      "id": "lesson-2",
-      "title": "Dos grandes grupos",
-      "source_pages": [9, 10, 11, 13, 18]
+      "id": "module-2",
+      "title": "Gimnospermas: semillas desnudas",
+      "duration_minutes": 15,
+      "source_pages": [9, 10, 11, 12, 13, 14, 16]
     },
     {
-      "id": "lesson-3",
-      "title": "Angiospermas: dos subclases",
-      "source_pages": [23, 24, 25]
+      "id": "module-3",
+      "title": "Angiospermas: flor, fruto y subclases",
+      "duration_minutes": 15,
+      "source_pages": [17, 18, 19, 20, 23, 24, 25, 26]
     },
     {
-      "id": "lesson-4",
-      "title": "Viabilidad y germinación",
-      "source_pages": [30, 31, 32]
-    },
-    {
-      "id": "quiz",
-      "title": "Comprobación final",
-      "source_pages": [4, 9, 10, 11, 24, 31]
+      "id": "module-4",
+      "title": "Clases de semilla, viabilidad y germinación",
+      "duration_minutes": 15,
+      "source_pages": [27, 28, 29, 30, 31, 32]
     }
   ]
 }

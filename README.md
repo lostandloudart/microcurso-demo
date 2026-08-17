@@ -1,7 +1,11 @@
 # Microcurso: Generalidades de las semillas
 
-Prototipo de un microcurso web accesible y estático, construido exclusivamente a
-partir de la presentación `Generalidades de las semillas`.
+Curso web accesible y estático de cuatro módulos de 15 minutos, construido
+exclusivamente a partir de la presentación `Generalidades de las semillas`.
+
+Cada módulo combina explicación, lectura visual, actividad y comprobación. Las
+imágenes del sitio fueron extraídas del documento fuente y conservan su número de
+página en los epígrafes.
 
 ## Ejecutar localmente
 
