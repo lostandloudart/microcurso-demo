@@ -1,9 +1,18 @@
-const storageKey = "curso-semillas-progress-v2";
-const moduleIds = ["module-1", "module-2", "module-3", "module-4"];
+const storageKey = "planta-esencia-progress-v1";
+const modules = [
+  { key: "t03-m01", dom: "module-1" },
+  { key: "t03-m02", dom: "module-2" },
+  { key: "t03-m03", dom: "module-3" },
+  { key: "t03-m04", dom: "module-4" }
+];
+const moduleIds = modules.map((module) => module.key);
 
 function loadProgress() {
   try {
-    return JSON.parse(localStorage.getItem(storageKey)) || {};
+    const current = JSON.parse(localStorage.getItem(storageKey));
+    if (current) return current;
+    const legacy = JSON.parse(localStorage.getItem("curso-semillas-progress-v2")) || {};
+    return Object.fromEntries(modules.map((module) => [module.key, Boolean(legacy[module.dom])]));
   } catch {
     return {};
   }
@@ -75,10 +84,10 @@ function updateProgressDisplay() {
   bar.setAttribute("aria-valuenow", String(percentage));
   document.querySelector("#progress-fill").style.width = `${percentage}%`;
 
-  moduleIds.forEach((id, index) => {
-    const complete = Boolean(progress[id]);
-    const module = document.querySelector(`[data-module="${id}"]`);
-    const status = document.querySelector(`[data-status="${id}"]`);
+  modules.forEach(({ key, dom }, index) => {
+    const complete = Boolean(progress[key]);
+    const module = document.querySelector(`[data-module="${dom}"]`);
+    const status = document.querySelector(`[data-status="${dom}"]`);
     module.dataset.complete = String(complete);
     status.textContent = complete ? `Módulo ${index + 1} completado` : `Módulo ${index + 1} pendiente`;
     status.classList.toggle("complete", complete);
@@ -101,7 +110,7 @@ document.querySelectorAll("[data-module-quiz]").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const fieldsets = [...form.querySelectorAll("fieldset")];
-    const moduleId = form.dataset.moduleQuiz;
+    const moduleId = modules.find((module) => module.dom === form.dataset.moduleQuiz)?.key;
     let correct = 0;
     let unanswered = 0;
 

@@ -1,33 +1,44 @@
-# Microcurso: Generalidades de las semillas
+# De la planta a la esencia
 
-Curso web accesible y estático de cuatro módulos de 15 minutos, construido
-exclusivamente a partir de la presentación `Generalidades de las semillas`.
+Proyecto editorial y sitio web de un curso de cosmética natural ligada a aceites esenciales.
 
-Cada módulo combina explicación, lectura visual, actividad y comprobación. Las
-imágenes del sitio fueron extraídas del documento fuente y conservan su número de
-página en los epígrafes.
+## Accesos rápidos
 
-El recorrido utiliza una estructura narrativa en cuatro capítulos: el interior de la
-semilla, la bifurcación entre gimnospermas y angiospermas, la aparición del fruto y
-el momento en que la germinación reanuda el crecimiento embrionario.
+- [Brief general](00_GESTION/BRIEF_CURSO.md)
+- [Estado del curso](00_GESTION/ESTADO_DEL_CURSO.md)
+- [Mapa curricular](00_GESTION/MAPA_CURRICULAR.md)
+- [Índice de contenidos](02_CONTENIDOS/INDICE_CONTENIDOS.md)
+- [Inventario de imágenes](03_IMAGENES/INVENTARIO_IMAGENES.md)
+- [Revisión de contenido](04_REVISION/CONTROL_CONTENIDO.md)
+- [Revisión de seguridad](04_REVISION/CONTROL_SEGURIDAD.md)
+- [Revisión visual](04_REVISION/CONTROL_VISUAL.md)
+- [Sitio publicable](docs/index.html)
 
-## Ejecutar localmente
+## Organización
 
-No requiere instalación ni compilación. Puede abrirse `index.html` directamente o
-servirse con cualquier servidor estático.
+- `00_GESTION`: decisiones editoriales, estilo, estado y cambios.
+- `01_FUENTES`: PDF de trabajo, manifiesto y trazabilidad.
+- `02_CONTENIDOS`: un Markdown por tema y por módulo.
+- `03_IMAGENES`: originales, recortes, versiones web e inventario.
+- `04_REVISION`: controles y pendientes.
+- `scripts`: generación y validación reproducible.
+- `docs`: sitio estático publicado en GitHub Pages.
+
+Los PDF y recortes de trabajo permanecen en Dropbox y están excluidos de Git. Los textos editables, inventarios, versiones visuales aprobadas y el sitio sí se versionan.
+
+## Comandos
 
 ```bash
-python3 -m http.server 8000
+node scripts/generar-contenidos.js
+node scripts/generar-inventarios.js
+node scripts/construir-sitio.js
+node scripts/validar-contenidos.js
 ```
 
-Luego visitar `http://localhost:8000`.
+Para revisar el sitio localmente:
 
-## Publicación
+```bash
+python3 -m http.server 8000 --directory docs
+```
 
-El proyecto está preparado para publicarse directamente mediante GitHub Pages desde
-la rama `main`.
-
-## Privacidad y fuentes
-
-El PDF original no forma parte del repositorio. El sitio contiene únicamente el
-curso derivado y referencias a las páginas utilizadas.
+Después visitar `http://localhost:8000`.
