@@ -11,6 +11,56 @@ function loadProgress() {
 
 let progress = loadProgress();
 
+const conceptTerms = [...document.querySelectorAll(".concept-term")];
+
+function closeConceptPopups(except = null) {
+  conceptTerms.forEach((term) => {
+    if (term === except) return;
+    term.setAttribute("aria-expanded", "false");
+    const popup = document.querySelector(`#${term.getAttribute("aria-controls")}`);
+    if (popup) popup.hidden = true;
+  });
+}
+
+conceptTerms.forEach((term, index) => {
+  const wrapper = document.createElement("span");
+  const popup = document.createElement("span");
+  const popupId = `concept-definition-${index + 1}`;
+
+  wrapper.className = "concept-wrap";
+  popup.className = "concept-popup";
+  popup.id = popupId;
+  popup.setAttribute("role", "tooltip");
+  popup.textContent = term.dataset.definition;
+  popup.hidden = true;
+
+  term.before(wrapper);
+  wrapper.append(term, popup);
+  const followingText = wrapper.nextSibling;
+  if (followingText?.nodeType === Node.TEXT_NODE && /^[.,;:]/.test(followingText.textContent)) {
+    wrapper.insertBefore(document.createTextNode(followingText.textContent[0]), popup);
+    followingText.textContent = followingText.textContent.slice(1);
+  }
+  term.setAttribute("aria-expanded", "false");
+  term.setAttribute("aria-controls", popupId);
+
+  term.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const willOpen = term.getAttribute("aria-expanded") !== "true";
+    closeConceptPopups(term);
+    term.setAttribute("aria-expanded", String(willOpen));
+    popup.hidden = !willOpen;
+  });
+});
+
+document.addEventListener("click", () => closeConceptPopups());
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  const openTerm = document.querySelector('.concept-term[aria-expanded="true"]');
+  closeConceptPopups();
+  if (openTerm) openTerm.focus();
+});
+
 function saveProgress() {
   localStorage.setItem(storageKey, JSON.stringify(progress));
 }
