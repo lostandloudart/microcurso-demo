@@ -36,8 +36,8 @@ function updateProgressDisplay() {
 
   document.querySelector("#completion-message").textContent =
     completed === moduleIds.length
-      ? "Recorrido completo: aprobaste las comprobaciones de los cuatro módulos."
-      : `Completaste ${completed} de ${moduleIds.length} módulos. Continuá con las comprobaciones pendientes.`;
+      ? "Historia completa: recorriste el camino desde la semilla en descanso hasta la reanudación del crecimiento."
+      : `Completaste ${completed} de ${moduleIds.length} capítulos. La historia continúa en las comprobaciones pendientes.`;
 }
 
 document.querySelector("#start-course").addEventListener("click", () => {

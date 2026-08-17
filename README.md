@@ -7,6 +7,10 @@ Cada módulo combina explicación, lectura visual, actividad y comprobación. La
 imágenes del sitio fueron extraídas del documento fuente y conservan su número de
 página en los epígrafes.
 
+El recorrido utiliza una estructura narrativa en cuatro capítulos: el interior de la
+semilla, la bifurcación entre gimnospermas y angiospermas, la aparición del fruto y
+el momento en que la germinación reanuda el crecimiento embrionario.
+
 ## Ejecutar localmente
 
 No requiere instalación ni compilación. Puede abrirse `index.html` directamente o
