@@ -116,7 +116,7 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .activity-card .activity-label { color: #79520f; }
 .activity-card p:last-child, .concept-card p:last-child { margin-bottom: 0; }
 .activity-card details { margin-top: 1rem; }
-.activity-card summary, .source-note summary { font-weight: 760; }
+.activity-card summary { font-weight: 760; }
 .full-activity { margin: 0 0 2rem; }
 .visual-prompt { margin: -1.5rem 0 3.5rem; border-left: 0.35rem solid var(--leaf); }
 .visual-prompt ol, .activity-card ol { margin-bottom: 0; padding-left: 1.25rem; }
@@ -145,8 +145,6 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .comparison-cards section:last-child { background: #f0e7d3; }
 .comparison-tag { display: inline-block; margin-bottom: 1rem; }
 
-.source-note { margin: 2rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: 0.65rem; }
-.source-note p { margin: 0.75rem 0 0; color: var(--muted); }
 .next-chapter { margin: 3rem 0 2rem; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid var(--line); border-radius: 0.9rem; background: linear-gradient(125deg, #edf1e5, #f7f0de); }
 .next-chapter span { display: block; margin-bottom: 0.55rem; color: var(--forest); font-size: 0.73rem; font-weight: 820; letter-spacing: 0.11em; text-transform: uppercase; }
 .next-chapter p { max-width: 54rem; margin-bottom: 1rem; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.45; }
@@ -164,15 +162,12 @@ h4 { margin-bottom: 0.7rem; font-size: 1.2rem; }
 .question-feedback.incorrect { color: #ffbaa9; }
 .quiz-result { margin-top: 1.2rem; font-size: 1.08rem; font-weight: 760; }
 
-.completion-panel, .bibliography { margin: 0 0 4rem; padding: clamp(1.5rem, 5vw, 4rem); border-radius: 1.1rem; }
+.completion-panel { margin: 0 0 4rem; padding: clamp(1.5rem, 5vw, 4rem); border-radius: 1.1rem; }
 .completion-panel { color: white; background: var(--forest); }
 .completion-panel .section-number { color: #d9edb9; }
 .module-statuses { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 2rem; }
 .module-statuses span { padding: 0.8rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 0.55rem; font-size: 0.85rem; text-align: center; }
 .module-statuses span.complete { color: var(--forest-dark); background: #d9edb9; }
-.bibliography { border: 1px solid var(--line); background: var(--surface); }
-.integrity-note { margin: 2rem 0 0; padding: 1.2rem 1.4rem; border-left: 0.3rem solid var(--sun); background: #fff5dd; }
-
 footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0 3rem; color: var(--muted); font-size: 0.88rem; }
 .text-button { padding: 0; border: 0; color: var(--forest); background: transparent; text-decoration: underline; text-underline-offset: 0.2rem; }
 

@@ -69,10 +69,10 @@ document.querySelectorAll("[data-module-quiz]").forEach((form) => {
 
       if (selected.value === fieldset.dataset.answer) {
         correct += 1;
-        feedback.textContent = `Correcto. Respaldo: ${fieldset.dataset.source}.`;
+        feedback.textContent = "Correcto.";
         feedback.classList.add("correct");
       } else {
-        feedback.textContent = `Revisá la respuesta. Respaldo: ${fieldset.dataset.source}.`;
+        feedback.textContent = "Revisá la respuesta e intentá nuevamente.";
         feedback.classList.add("incorrect");
       }
     });
@@ -86,7 +86,7 @@ document.querySelectorAll("[data-module-quiz]").forEach((form) => {
       saveProgress();
       updateProgressDisplay();
     } else {
-      result.textContent = `Resultado: ${correct} de ${fieldsets.length}. Revisá las referencias e intentá nuevamente.`;
+      result.textContent = `Resultado: ${correct} de ${fieldsets.length}. Revisá tus respuestas e intentá nuevamente.`;
     }
     result.focus();
   });
