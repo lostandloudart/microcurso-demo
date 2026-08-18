@@ -8,5 +8,6 @@
 - Se definieron 6 partes, 15 temas y 54 módulos editables.
 - Se creó el inventario visual con las seis imágenes publicadas del demo.
 - Se publicó “El comienzo del viaje” con dos módulos narrativos, imágenes tratadas, conceptos emergentes, actividades y cuestionarios.
+- Se revisó su claridad editorial y se enriqueció el ritmo visual con escenas destacadas, secuencias y síntesis en tarjetas; los criterios quedaron incorporados a los documentos maestros.
 - Se movió el sitio publicable a `docs/`.
 - Se conservaron como respaldo los archivos originales en la ubicación anterior.

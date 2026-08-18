@@ -16,9 +16,10 @@ tiempos: "5 min historia|5 min recorrido|4 min observación|3 min actividad|3 mi
 
 > Antes de hablar de un aceite esencial, necesitamos descubrir todo lo que tuvo que ocurrir para que ese pequeño frasco llegara hasta nosotros.
 
-## La escena inicial
-
+::: story
+### Una escena para entrar
 Imaginá un frasco pequeño sobre una mesa. Está cerrado. No vemos la planta de la que provino, el momento de la cosecha ni el equipo que intervino en la extracción. Tampoco vemos el secado, la selección, los controles o el recorrido hasta el envasado. El frasco parece el comienzo porque es lo primero que tenemos delante. En realidad, es el final visible de una historia mucho más larga.
+:::
 
 Cuando lo abrimos, el aroma parece ocuparlo todo. Sin embargo, para comprenderlo debemos hacer el movimiento contrario: alejarnos del frasco y volver hacia atrás. Primero aparece la esencia almacenada. Antes estuvo el proceso de extracción. Antes hubo materia vegetal preparada. Y mucho antes hubo una planta creciendo, atravesando su ciclo y llegando al momento apropiado para ser recolectada.
 
@@ -33,6 +34,16 @@ El tiempo de una planta no es el tiempo de un frasco. La planta crece, se reprod
 Una vez recolectada, la materia vegetal todavía no está lista para convertirse en esencia. Debe ser seleccionada y preparada. El recorrido incluye secado a la sombra, limpieza, clasificación, primera elaboración, control de calidad, envasado y despacho. Cada paso cambia el estado del material y prepara el siguiente.
 
 La **materia prima**{def="Material de origen que será preparado o transformado para obtener un producto."} es, en este caso, la planta aromática seleccionada para el proceso. Su calidad importa porque la extracción no empieza en el equipo: empieza en las decisiones tomadas durante el cultivo, la cosecha y la preparación.
+
+::: process
+### Cinco estaciones del recorrido
+
+1. Reconocer la planta y comprender su ciclo.
+2. Cultivarla y elegir el momento de recolección.
+3. Secar, limpiar y seleccionar la materia vegetal.
+4. Extraer y separar la esencia.
+5. Controlar, almacenar y definir su aplicación.
+:::
 
 ::: visual
 ### La historia escondida en una sola imagen
@@ -60,7 +71,7 @@ La transformación no termina cuando se obtiene la esencia. El almacenamiento, e
 
 ## De la esencia a sus aplicaciones
 
-Los aceites esenciales llegan a distintas ramas de la industria. El recorrido incluye sus aplicaciones, la aromaterapia, la perfumería, la alimentación y la producción de artículos cosmetológicos. Nuestro eje será la cosmética natural: cómo se conecta la materia vegetal con una experiencia cosmética y qué decisiones deben acompañar esa transformación.
+Los aceites esenciales llegan a distintos campos de aplicación. El recorrido incluye la aromaterapia, la perfumería, la alimentación y la elaboración de productos cosméticos. Nuestro eje será la cosmética natural: cómo se conecta la materia vegetal con una experiencia cosmética y qué decisiones deben acompañar esa transformación.
 
 La cosmética aparece al final de una cadena y depende de lo que ocurrió antes. La selección de la planta influye en la materia prima. La cosecha y el secado influyen en su preparación. La extracción determina cómo se obtiene la esencia. El almacenamiento y el control de calidad acompañan su conservación.
 
