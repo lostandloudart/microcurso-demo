@@ -1,5 +1,11 @@
 # Control de cambios
 
+## 2026-08-18 · Publicación
+
+- Se adoptó **Curso Esencias Naturales** como nombre visible del sitio.
+- “De la planta a la esencia” se conserva como nombre del recorrido narrativo.
+- La nueva Parte 1 se integró al flujo de publicación de GitHub Pages.
+
 ## 2026-08-18
 
 - Se adoptó el nuevo guion de 6 partes y 31 módulos como única base activa.

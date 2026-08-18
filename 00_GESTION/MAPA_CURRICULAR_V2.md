@@ -2,7 +2,7 @@
 
 Estado: **propuesta**. No reemplaza a `MAPA_CURRICULAR.md` hasta que se apruebe.
 
-Curso: **De la planta a la esencia**
+Curso: **Curso Esencias Naturales**
 Partes: **6** · Módulos: **31** · Duración de módulos: **12 h 30 min**
 Con 6 evaluaciones de parte y una final: **≈ 14 h 30 min**
 

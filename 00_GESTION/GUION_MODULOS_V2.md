@@ -1,6 +1,6 @@
 # Guion de módulos — desarrollo punto por punto
 
-Curso: **De la planta a la esencia** · 6 partes · 31 módulos · 12 h 30 min
+Curso: **Curso Esencias Naturales** · Recorrido: **De la planta a la esencia** · 6 partes · 31 módulos · 12 h 30 min
 Acompaña a [MAPA_CURRICULAR_V2.md](MAPA_CURRICULAR_V2.md). Documento interno: no se muestra al estudiante.
 
 Cada módulo sigue el patrón del brief: apertura con pregunta, desarrollo narrativo punto por punto, conceptos con definición emergente, observación guiada, actividad de aplicación, comprobación y puente al módulo siguiente. Los puntos de desarrollo son el orden en que se cuenta, no una lista de temas sueltos.

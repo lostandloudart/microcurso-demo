@@ -1,4 +1,4 @@
-# Brief general: De la planta a la esencia
+# Brief general: Curso Esencias Naturales
 
 ## Propósito
 

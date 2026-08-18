@@ -1,6 +1,6 @@
-# De la planta a la esencia
+# Curso Esencias Naturales
 
-Proyecto editorial y sitio web de un curso de cosmética natural ligada a aceites esenciales.
+Proyecto editorial y sitio web del recorrido **De la planta a la esencia**, orientado a cosmética natural ligada a aceites esenciales.
 
 ## Accesos rápidos
 

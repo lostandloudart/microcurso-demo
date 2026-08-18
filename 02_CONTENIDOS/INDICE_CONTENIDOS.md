@@ -1,4 +1,4 @@
-# De la planta a la esencia · Contenidos activos
+# Curso Esencias Naturales · Contenidos activos
 
 Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 min**. La versión anterior se conserva en `00_GESTION/ARCHIVO_V1/` y ya no alimenta el sitio.
 
