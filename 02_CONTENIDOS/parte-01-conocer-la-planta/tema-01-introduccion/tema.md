@@ -5,7 +5,7 @@ titulo: "El comienzo del viaje"
 slug: introduccion
 fuente: 01_introduccion.pdf
 paginas: 12
-estado: borrador
+estado: publicado
 ---
 
 # El comienzo del viaje
@@ -27,4 +27,4 @@ Descubrir qué son los aceites esenciales y por qué el recorrido comienza mucho
 
 ## Notas editoriales
 
-Pendiente de revisión temática y visual.
+Contenido desarrollado, revisado y publicado. Las dos imágenes siguen el tratamiento visual del curso demo.

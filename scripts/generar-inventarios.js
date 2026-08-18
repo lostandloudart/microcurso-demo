@@ -55,11 +55,15 @@ fs.writeFileSync(path.join(sourceRoot, "MANIFIESTO_FUENTES.md"), `# Manifiesto d
   `## Duplicado detectado\n\nLos dos archivos titulados “Generalidades de las semillas” tenían el mismo SHA-256 (\`c3121cbee572d4a0c3ca68a619d129c1de41eb0d810155eb4cd4276c950122b4\`). Se conservó una sola copia normalizada.\n`, "utf8");
 
 const mapHeaders = ["modulo_id", "parte", "tema_id", "tema", "modulo", "duracion_min", "pdf", "paginas_fuente", "estado_trazabilidad", "notas"];
+const verifiedPages = {
+  1: ["1-10", "10-12"],
+  3: ["7-11", "12-17", "18-27", "28-32"]
+};
 const mapRows = themes.flatMap((theme) => theme.modules.map(([title, duration], index) => [
   `t${String(theme.id).padStart(2, "0")}-m${String(index + 1).padStart(2, "0")}`,
   theme.part, `t${String(theme.id).padStart(2, "0")}`, theme.title, title, duration, theme.source,
-  theme.id === 3 ? ["7-11", "12-17", "18-27", "28-32"][index] : "por-relevar",
-  theme.id === 3 ? "verificado" : "pendiente", ""
+  verifiedPages[theme.id]?.[index] || "por-relevar",
+  verifiedPages[theme.id] ? "verificado" : "pendiente", ""
 ]));
 fs.writeFileSync(path.join(sourceRoot, "mapa_fuentes.csv"), csv(mapHeaders, mapRows));
 

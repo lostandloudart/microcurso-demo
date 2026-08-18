@@ -280,6 +280,20 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
 .module-preview small { color: var(--muted); }
 .theme-navigation { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
 .theme-navigation a { color: var(--forest); font-weight: 760; }
+.visual-section { margin: 0 0 3.5rem; }
+.visual-section > h3 { max-width: 53rem; margin: 0 auto 1.25rem; }
+.visual-section > .source-figure { margin-bottom: 1.5rem; }
+.visual-section > ol {
+  max-width: 53rem;
+  margin: 0 auto;
+  padding: 1.35rem 1.5rem 1.35rem 3.25rem;
+  border-left: 0.3rem solid var(--sun);
+  border-radius: 0.8rem;
+  background: #fff5dd;
+}
+.visual-section > ol li + li { margin-top: 0.55rem; }
+.light-button { color: var(--forest-dark); background: #d9edb9; }
+.light-button:hover, .light-button:focus-visible { background: #edf7d9; }
 
 @media (max-width: 650px) {
   .release-note { display: none; }
@@ -288,4 +302,5 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
   .theme-grid { grid-template-columns: 1fr; }
   .theme-card { min-height: auto; }
   .theme-navigation { flex-direction: column; }
+  .visual-section > ol { padding-left: 2.5rem; }
 }

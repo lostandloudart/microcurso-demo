@@ -7,8 +7,9 @@ Actualizado: 17 de agosto de 2026.
 | Estructura editorial | Completa | Mantener al agregar material |
 | PDF únicos | 15 copiados y verificados | No publicar los originales |
 | Módulos editables | 54 creados | Desarrollar por partes |
+| Tema introducción | Publicado | Revisar con lectores de prueba |
 | Tema semillas | Publicado | Adaptar al recorrido completo |
-| Otros 14 temas | Borrador estructural | Desarrollar narrativa y trazabilidad |
+| Otros 13 temas | Borrador estructural | Desarrollar narrativa y trazabilidad |
 | Inventario visual | Operativo | Agregar candidatos por tema |
 | Sitio índice | Operativo | Publicar nuevas partes progresivamente |
 | Seguridad | Criterios definidos | Revisar cada módulo antes de aprobar |
