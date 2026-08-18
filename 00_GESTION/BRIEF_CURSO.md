@@ -2,14 +2,14 @@
 
 ## Propósito
 
-Crear un curso web narrativo para emprendedores principiantes interesados en cosmética natural con aceites esenciales. El recorrido acompaña a la materia vegetal desde su estructura y cultivo hasta la extracción, la experiencia aromática y la mirada agroindustrial.
+Crear un curso web narrativo para personas principiantes interesadas en cosmética natural con aceites esenciales. El recorrido parte de una gota, vuelve a la planta que la produjo y avanza hacia cultivo, extracción, mezcla y emprendimiento.
 
 ## Alcance
 
-- 6 partes, 15 temas y 54 módulos.
-- Duración total estimada: 22 h 40 min.
-- Cada tema corresponde a un PDF único.
-- Cada tema tiene una página web y varios Markdown editables.
+- 6 partes y 31 módulos.
+- Duración modular total estimada: 12 h 30 min, más cierres integradores.
+- La secuencia sigue el guion V2 y reúne páginas de diferentes PDF cuando el aprendizaje lo requiere.
+- Cada parte tiene una página y cada módulo publicado, su propia página web y Markdown editable.
 - Los módulos duran entre 20 y 30 minutos.
 - Publicación progresiva mediante GitHub Pages.
 

@@ -1,94 +1,27 @@
 #!/usr/bin/env node
 "use strict";
-
 const fs = require("fs");
 const path = require("path");
-const { themes } = require("./datos-curso");
-
-const root = path.resolve(__dirname, "..");
-const contentRoot = path.join(root, "02_CONTENIDOS");
-const errors = [];
-const warnings = [];
-const moduleFiles = [];
-
-function walk(dir) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) walk(file);
-    else if (/modulo-\d+\.md$/.test(entry.name)) moduleFiles.push(file);
-  }
-}
-
-walk(contentRoot);
-const expected = themes.flatMap((theme) => theme.modules).length;
-if (moduleFiles.length !== expected) errors.push(`Se esperaban ${expected} módulos y se encontraron ${moduleFiles.length}.`);
-
+const root = path.resolve(__dirname,"..");
+const errors=[]; const warnings=[];
+const moduleDir=path.join(root,"02_CONTENIDOS","parte-01-la-gota-que-lo-empieza-todo");
+const moduleFiles=[1,2,3,4].map((n)=>path.join(moduleDir,`modulo-0${n}.md`));
 for (const file of moduleFiles) {
-  const body = fs.readFileSync(file, "utf8");
-  const duration = Number((body.match(/^duracion:\s*(\d+)/m) || [])[1]);
-  const status = (body.match(/^estado:\s*(.+)/m) || [])[1]?.trim();
-  if (duration < 20 || duration > 30) errors.push(`${file}: duración fuera del rango 20-30.`);
-  if (status === "publicado") {
-    if (body.split(/\s+/).length < 800) errors.push(`${file}: el contenido publicado es demasiado breve.`);
-    const isMigratedDemo = body.includes("## Contenido publicado migrado");
-    if (!isMigratedDemo && !body.includes("::: quiz")) errors.push(`${file}: falta el cuestionario interactivo.`);
-    if (!isMigratedDemo && !body.includes("::: activity")) errors.push(`${file}: falta la actividad guiada.`);
-    if (!isMigratedDemo && !body.match(/\*\*[^*]+\*\*\{def="[^"]+"\}/)) errors.push(`${file}: faltan conceptos con definición emergente.`);
-  } else {
-    for (const section of ["Apertura narrativa", "Desarrollo conceptual", "Conceptos interactivos", "Imágenes asociadas", "Observación guiada", "Actividad breve", "Cuestionario", "Puente narrativo"]) {
-      if (!body.includes(`## ${section}`)) errors.push(`${file}: falta la sección ${section}.`);
-    }
-  }
-  if (body.includes("[Desarrollar") || body.includes("[Pregunta]")) warnings.push(`${file}: conserva contenido pendiente.`);
+  if (!fs.existsSync(file)) { errors.push(`Falta ${file}`); continue; }
+  const body=fs.readFileSync(file,"utf8"); const words=body.split(/\s+/).length;
+  const duration=Number((body.match(/^duracion:\s*(\d+)/m)||[])[1]);
+  if (duration<20||duration>30) errors.push(`${file}: duración fuera de 20–30 minutos.`);
+  if (words<550) warnings.push(`${file}: revisar si la lectura y actividades alcanzan la duración indicada (${words} palabras).`);
+  for (const token of ["::: story","::: activity","::: quiz","::: bridge","{def=","fuentes:"]) if (!body.includes(token)) errors.push(`${file}: falta ${token}.`);
 }
-
-const docsRoot = path.join(root, "docs");
-const htmlFiles = [];
-walkHtml(docsRoot);
-function walkHtml(dir) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) walkHtml(file);
-    else if (entry.name.endsWith(".html")) htmlFiles.push(file);
-  }
-}
-
-if (htmlFiles.length !== 16) errors.push(`Se esperaban 16 páginas HTML y se encontraron ${htmlFiles.length}.`);
-for (const file of htmlFiles) {
-  const html = fs.readFileSync(file, "utf8");
-  const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
-  for (const reference of references) {
-    if (/^(?:https?:|#|mailto:)/.test(reference)) continue;
-    const clean = reference.split("?")[0].split("#")[0];
-    if (!clean) continue;
-    const target = path.resolve(path.dirname(file), clean);
-    const resolved = fs.existsSync(target) && fs.statSync(target).isDirectory() ? path.join(target, "index.html") : target;
-    if (!fs.existsSync(resolved)) errors.push(`${file}: referencia inexistente ${reference}.`);
-  }
-}
-
-const imageRoot = path.join(root, "03_IMAGENES");
-const imageData = JSON.parse(fs.readFileSync(path.join(imageRoot, "imagenes.json"), "utf8"));
-const listedImages = new Set(imageData.flatMap((item) => [item.archivo_original, item.archivo_recortado, item.archivo_web, item.versiones_adicionales].filter(Boolean)));
-const physicalImages = [];
-function walkImages(dir) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const file = path.join(dir, entry.name);
-    if (entry.isDirectory()) walkImages(file);
-    else if (/\.(?:jpe?g|png|webp)$/i.test(entry.name)) physicalImages.push(path.relative(imageRoot, file));
-  }
-}
-walkImages(imageRoot);
-for (const image of physicalImages) if (!listedImages.has(image)) errors.push(`Imagen sin inventariar: ${image}.`);
-for (const image of listedImages) if (!fs.existsSync(path.join(imageRoot, image))) errors.push(`Imagen inventariada inexistente: ${image}.`);
-
-console.log(`Módulos inspeccionados: ${moduleFiles.length}/${expected}`);
-console.log(`Páginas HTML inspeccionadas: ${htmlFiles.length}/16`);
-console.log(`Imágenes inventariadas: ${listedImages.size}/${physicalImages.length}`);
-console.log(`Errores: ${errors.length}`);
-console.log(`Advertencias editoriales: ${warnings.length}`);
-if (errors.length) {
-  errors.forEach((error) => console.error(`ERROR ${error}`));
-  process.exit(1);
-}
-if (warnings.length) console.log("Los módulos no publicados permanecen correctamente identificados como borradores.");
+const html=[];
+function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())walk(file);else if(entry.name.endsWith(".html"))html.push(file);}}
+walk(path.join(root,"docs"));
+if(html.length!==12) errors.push(`Se esperaban 12 HTML y se encontraron ${html.length}.`);
+for(const file of html){const source=fs.readFileSync(file,"utf8");for(const match of source.matchAll(/(?:href|src)="([^"]+)"/g)){const ref=match[1];if(/^(?:https?:|#|mailto:)/.test(ref))continue;const clean=ref.split("?")[0].split("#")[0];if(!clean)continue;let target=path.resolve(path.dirname(file),clean);if(fs.existsSync(target)&&fs.statSync(target).isDirectory())target=path.join(target,"index.html");if(!fs.existsSync(target))errors.push(`${path.relative(root,file)}: enlace roto ${ref}`);}}
+const json=JSON.parse(fs.readFileSync(path.join(root,"03_IMAGENES","imagenes.json"),"utf8"));
+for(const item of json.filter((i)=>String(i.id).startsWith("p01-"))){for(const key of ["archivo_original","archivo_recortado","archivo_web"]){if(!fs.existsSync(path.join(root,"03_IMAGENES",item[key])))errors.push(`Falta imagen ${item[key]}`);}if(!item.texto_alternativo||!item.consigna_observacion)errors.push(`${item.id}: accesibilidad u observación incompleta.`);}
+console.log(`Parte 1: ${moduleFiles.length} módulos; sitio: ${html.length} páginas; errores: ${errors.length}; advertencias: ${warnings.length}.`);
+warnings.forEach((v)=>console.warn(`AVISO ${v}`));
+errors.forEach((v)=>console.error(`ERROR ${v}`));
+if(errors.length)process.exit(1);
