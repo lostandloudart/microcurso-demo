@@ -22,6 +22,8 @@ Crear un curso web narrativo para emprendedores principiantes interesados en cos
 5. Los conceptos importantes se destacan en negrita y tienen definiciones simples.
 6. Las imágenes se tratan como en el demo: recorte limpio, tamaño moderado, epígrafe y observación guiada.
 7. Se excluyen diagnóstico, ingestión, prescripciones, promesas de curación y aplicaciones inseguras.
+8. Antes de publicar, cada módulo pasa por una revisión editorial de sentido, claridad, continuidad y ausencia de repeticiones.
+9. La página debe tener ritmo visual: no puede reducirse a una columna monótona de párrafos, pero cada recurso gráfico debe cumplir una función pedagógica.
 
 ## Patrón de módulo
 
@@ -32,6 +34,15 @@ Crear un curso web narrativo para emprendedores principiantes interesados en cos
 5. Actividad breve.
 6. Cuestionario con devolución.
 7. Puente hacia el módulo siguiente.
+
+## Control editorial y visual previo a publicar
+
+- Leer el módulo completo como una historia y comprobar que cada sección responde la pregunta que dejó abierta la anterior.
+- Simplificar frases ambiguas, demasiado largas o artificiales sin perder información del material autorizado.
+- Eliminar repeticiones que no ayuden a recordar, comparar o cerrar una idea.
+- Alternar texto con escenas narrativas, imágenes, procesos, comparaciones, síntesis, actividades y evaluación según lo que permita el contenido.
+- Evitar tanto la página excesivamente simple como la decoración sin propósito.
+- Verificar jerarquía, ancho de lectura, espacios, tamaño de imágenes y ausencia de superposiciones a 360, 768 y 1440 píxeles.
 
 ## Evaluación
 

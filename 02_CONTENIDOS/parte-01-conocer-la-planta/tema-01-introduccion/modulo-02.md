@@ -16,9 +16,10 @@ tiempos: "7 min historia|7 min propiedades|4 min observación|4 min actividad|3 
 
 > El frasco ya no es el final de una cadena: ahora es una pregunta. ¿Qué contiene y por qué su aroma parece escapar apenas lo abrimos?
 
-## Volver al frasco
-
+::: story
+### Volver al frasco
 El pequeño frasco sigue sobre la mesa. Esta vez no vamos a alejarnos hacia el cultivo o la extracción. Vamos a acercarnos. Su contenido tiene un aroma intenso, pero el aroma por sí solo no alcanza para definirlo. Necesitamos descubrir de dónde proviene, cómo se comporta y con qué otras sustancias puede mezclarse.
+:::
 
 Un aceite esencial es una mezcla de varias sustancias químicas **biosintetizadas**{def="Producidas por un ser vivo mediante sus propios procesos."} por las plantas. Estas mezclas aportan el aroma característico a algunas flores, árboles, frutos, hierbas, especias y semillas. La palabra mezcla es importante: no estamos hablando de una única sustancia aislada, sino de varias sustancias reunidas.
 
@@ -30,11 +31,18 @@ La primera pista es evidente: los aceites esenciales son intensamente **aromáti
 
 La segunda pista aparece apenas el frasco queda abierto. Son **volátiles**{def="Que se evaporan con facilidad."} por naturaleza; se evaporan rápidamente. Por eso el aroma no permanece encerrado en el líquido. Algunas de sus sustancias pasan al aire y alcanzan nuestro olfato.
 
-La tercera pista rompe una asociación producida por la palabra aceite. Los aceites esenciales son no grasos. No deben imaginarse como una grasa espesa simplemente porque llevan “aceite” en el nombre. El material los describe como productos que no se enrancian precisamente por no ser grasos.
+La tercera pista rompe una asociación producida por la palabra aceite. Los aceites esenciales no son grasos. Aunque compartan ese nombre, no se comportan como los aceites grasos ni se enrancian como ellos.
 
 La cuarta pista es su baja densidad. Son productos livianos, es decir, poco densos. La **densidad**{def="Relación entre la cantidad de materia y el espacio que ocupa."} será una propiedad útil para comparar sustancias y comprender procesos de separación.
 
-Estas cuatro pistas forman un primer retrato: intensamente aromáticos, volátiles, no grasos y livianos. Ninguna explica por sí sola qué es el producto, pero juntas permiten reconocer su comportamiento.
+::: key-ideas
+### Un retrato en cuatro señales
+
+- **Aromáticos:** su aroma es intenso y característico.
+- **Volátiles:** se evaporan con rapidez.
+- **No grasos:** no se comportan como los aceites grasos.
+- **Livianos:** presentan baja densidad.
+:::
 
 ::: visual
 ### Lo que el frasco muestra y lo que oculta
@@ -83,7 +91,7 @@ El frasco vuelve a contar una historia. Al principio parecía un simple recipien
 
 ## Natural, sintético y puro
 
-La expresión **aceite esencial puro**{def="Nombre utilizado para destacar que el aceite es natural y diferenciarlo de uno sintético."} se utiliza para resaltar la diferencia entre los aceites naturales y los sintéticos. En este contexto, la palabra puro funciona como una distinción de origen.
+La expresión **aceite esencial puro**{def="Nombre utilizado para destacar que el aceite es natural y diferenciarlo de uno sintético."} destaca la diferencia entre los aceites naturales y los sintéticos. Aquí, la palabra puro funciona como una distinción de origen.
 
 Esto abre una pregunta que acompañará más adelante al control de calidad: ¿cómo reconocer la identidad de un aceite? El curso llegará a la composición química, la cromatografía y la detección de adulteraciones. Por ahora basta con entender por qué la distinción entre natural y sintético forma parte del vocabulario inicial.
 

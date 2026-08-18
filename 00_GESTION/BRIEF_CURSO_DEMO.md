@@ -233,6 +233,13 @@ Principios:
 - Ninguna superposición entre textos, números, imágenes o controles.
 - Ningún desplazamiento horizontal accidental.
 
+La limpieza visual no debe convertir el módulo en una página demasiado simple. Cada módulo debe combinar, cuando el contenido lo permita, al menos tres ritmos además del texto continuo: escena narrativa destacada, imagen con observación, proceso o secuencia, comparación, síntesis visual, actividad o evaluación. Estos recursos deben ayudar a comprender; no se agregan como decoración.
+
+Se deben evitar dos extremos:
+
+- Una sucesión larga y monótona de párrafos sin pausas visuales.
+- Una acumulación de tarjetas, colores o imágenes que fragmente la lectura y distraiga del contenido.
+
 En celular:
 
 - Los encabezados se apilan verticalmente.
@@ -352,10 +359,22 @@ El proyecto no debe depender de servicios pagos para funcionar.
 - Eliminar cualquier dato agregado involuntariamente.
 - Confirmar que las actividades puedan resolverse con el contenido del curso.
 
+### Etapa 7.1. Control editorial
+
+- Leer el módulo completo, no solo secciones aisladas.
+- Comprobar que cada frase tenga sentido y pueda entenderse en una primera lectura.
+- Verificar que cada sección responda o desarrolle la pregunta anterior.
+- Simplificar construcciones rígidas, ambiguas o innecesariamente técnicas.
+- Eliminar contradicciones, saltos lógicos y repeticiones sin función pedagógica.
+- Confirmar que la apertura, el desarrollo y el puente final formen una historia continua.
+
 ### Etapa 8. Control visual y funcional
 
 - Probar computadora, tablet y celular.
+- Revisar específicamente anchos de 360, 768 y 1440 píxeles.
 - Revisar superposiciones y desbordes.
+- Confirmar que el desarrollo no sea una columna monótona y que los cambios visuales tengan función pedagógica.
+- Revisar jerarquía, ancho de lectura, espacios, proporción de imágenes y variedad de componentes.
 - Probar popups con ratón, toque y teclado.
 - Comprobar cuestionarios y progreso.
 - Revisar textos alternativos de las imágenes.
