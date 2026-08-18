@@ -29,8 +29,11 @@ for (const file of moduleFiles) {
   const status = (body.match(/^estado:\s*(.+)/m) || [])[1]?.trim();
   if (duration < 20 || duration > 30) errors.push(`${file}: duración fuera del rango 20-30.`);
   if (status === "publicado") {
-    if (!body.includes("## Contenido publicado migrado")) errors.push(`${file}: falta el contenido publicado migrado.`);
     if (body.split(/\s+/).length < 800) errors.push(`${file}: el contenido publicado es demasiado breve.`);
+    const isMigratedDemo = body.includes("## Contenido publicado migrado");
+    if (!isMigratedDemo && !body.includes("::: quiz")) errors.push(`${file}: falta el cuestionario interactivo.`);
+    if (!isMigratedDemo && !body.includes("::: activity")) errors.push(`${file}: falta la actividad guiada.`);
+    if (!isMigratedDemo && !body.match(/\*\*[^*]+\*\*\{def="[^"]+"\}/)) errors.push(`${file}: faltan conceptos con definición emergente.`);
   } else {
     for (const section of ["Apertura narrativa", "Desarrollo conceptual", "Conceptos interactivos", "Imágenes asociadas", "Observación guiada", "Actividad breve", "Cuestionario", "Puente narrativo"]) {
       if (!body.includes(`## ${section}`)) errors.push(`${file}: falta la sección ${section}.`);

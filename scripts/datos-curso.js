@@ -12,6 +12,7 @@ const parts = [
 const themes = [
   {
     id: 1, part: 1, slug: "introduccion", title: "El comienzo del viaje",
+    published: true,
     source: "01_introduccion.pdf", pages: 12,
     promise: "Descubrir qué son los aceites esenciales y por qué el recorrido comienza mucho antes del frasco.",
     modules: [["El aroma que abre la puerta", 20], ["Qué es un aceite esencial", 25]]

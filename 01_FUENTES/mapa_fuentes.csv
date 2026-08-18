@@ -1,6 +1,6 @@
 "modulo_id","parte","tema_id","tema","modulo","duracion_min","pdf","paginas_fuente","estado_trazabilidad","notas"
-"t01-m01","1","t01","El comienzo del viaje","El aroma que abre la puerta","20","01_introduccion.pdf","por-relevar","pendiente",""
-"t01-m02","1","t01","El comienzo del viaje","Qué es un aceite esencial","25","01_introduccion.pdf","por-relevar","pendiente",""
+"t01-m01","1","t01","El comienzo del viaje","El aroma que abre la puerta","20","01_introduccion.pdf","1-10","verificado",""
+"t01-m02","1","t01","El comienzo del viaje","Qué es un aceite esencial","25","01_introduccion.pdf","10-12","verificado",""
 "t02-m01","1","t02","Anatomía vegetal","Leer una hoja","25","02_anatomia_vegetal.pdf","por-relevar","pendiente",""
 "t02-m02","1","t02","Anatomía vegetal","Raíces y sostén","25","02_anatomia_vegetal.pdf","por-relevar","pendiente",""
 "t02-m03","1","t02","Anatomía vegetal","Tallos que transportan","25","02_anatomia_vegetal.pdf","por-relevar","pendiente",""
