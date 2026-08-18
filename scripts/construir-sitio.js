@@ -3,207 +3,104 @@
 
 const fs = require("fs");
 const path = require("path");
-const { parts, themes } = require("./datos-curso");
-
+const { parts } = require("./datos-curso");
 const root = path.resolve(__dirname, "..");
 const docs = path.join(root, "docs");
-const content = path.join(root, "02_CONTENIDOS");
-const pad = (value) => String(value).padStart(2, "0");
-const escapeHtml = (value) => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+const content = path.join(root, "02_CONTENIDOS", "parte-01-la-gota-que-lo-empieza-todo");
+const pad = (v) => String(v).padStart(2, "0");
+const esc = (v) => String(v ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
-function parseFrontmatter(file) {
+function parse(file) {
   const text = fs.readFileSync(file, "utf8");
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) throw new Error(`Sin frontmatter: ${file}`);
-  return Object.fromEntries(match[1].split("\n").map((line) => {
-    const separator = line.indexOf(":");
-    const key = line.slice(0, separator).trim();
-    const value = line.slice(separator + 1).trim().replace(/^"|"$/g, "");
-    return [key, value];
+  const match = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  const meta = Object.fromEntries(match[1].split("\n").map((line) => {
+    const at = line.indexOf(":");
+    return [line.slice(0, at).trim(), line.slice(at + 1).trim().replace(/^"|"$/g, "")];
   }));
+  return { meta, body: text.slice(match[0].length) };
 }
 
-function parseModule(file) {
-  const text = fs.readFileSync(file, "utf8");
-  const meta = parseFrontmatter(file);
-  return { meta, body: text.replace(/^---\n[\s\S]*?\n---\n*/, "") };
-}
-
-function renderInline(value) {
-  return escapeHtml(value)
+function inline(value) {
+  return esc(value)
     .replace(/\*\*([^*]+)\*\*\{def=&quot;(.+?)&quot;\}/g, '<button class="concept-term" type="button" data-definition="$2">$1</button>')
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
-function renderQuiz(lines, moduleId) {
-  const text = lines.join("\n");
-  const questions = text.split(/^###\s+/m).slice(1).map((chunk) => {
-    const chunkLines = chunk.trim().split("\n");
-    const question = chunkLines.shift().trim();
-    const options = chunkLines.filter((line) => /^- \[[ x]\]/.test(line)).map((line) => ({
-      correct: line.startsWith("- [x]"),
-      text: line.replace(/^- \[[ x]\]\s*/, "")
-    }));
-    const feedback = chunkLines.find((line) => line.startsWith("> Devolución:"))?.replace("> Devolución:", "").trim() || "Correcto.";
-    return { question, options, feedback };
+function quiz(lines, id) {
+  const questions = lines.join("\n").split(/^###\s+/m).slice(1).map((chunk) => {
+    const rows = chunk.trim().split("\n");
+    const title = rows.shift();
+    const options = rows.filter((r) => /^- \[[ x]\]/.test(r)).map((r) => ({ correct: r.startsWith("- [x]"), text: r.replace(/^- \[[ x]\]\s*/, "") }));
+    const feedback = rows.find((r) => r.startsWith("> Devolución:"))?.replace("> Devolución:", "").trim() || "Revisá la explicación y probá otra vez.";
+    return { title, options, feedback };
   });
-  const fieldsets = questions.map((question, questionIndex) => {
-    const answerIndex = question.options.findIndex((option) => option.correct);
-    const labels = question.options.map((option, optionIndex) => `<label><input type="radio" name="${moduleId}-q${questionIndex + 1}" value="${String.fromCharCode(97 + optionIndex)}" /> ${renderInline(option.text)}</label>`).join("");
-    return `<fieldset data-answer="${String.fromCharCode(97 + answerIndex)}" data-feedback="${escapeHtml(question.feedback)}"><legend>${renderInline(question.question)}</legend>${labels}<p class="question-feedback" aria-live="polite"></p></fieldset>`;
-  }).join("");
-  return `<form class="module-quiz" data-module-quiz="${moduleId}"><h3>Antes de seguir: recuperá las pistas</h3>${fieldsets}<button class="primary-button" type="submit">Comprobar mis respuestas</button><div class="quiz-result" role="status" tabindex="-1"></div></form>`;
+  return `<form class="module-quiz" data-module-quiz="${id}"><p class="section-number">Comprobación</p><h2>Recuperá las pistas</h2>${questions.map((q, qi) => `<fieldset data-answer="${q.options.findIndex((o) => o.correct)}" data-feedback="${esc(q.feedback)}"><legend>${inline(q.title)}</legend>${q.options.map((o, oi) => `<label><input type="radio" name="q${qi}" value="${oi}"> ${inline(o.text)}</label>`).join("")}<p class="question-feedback" aria-live="polite"></p></fieldset>`).join("")}<button class="primary-button" type="submit">Comprobar respuestas</button><div class="quiz-result" role="status" tabindex="-1"></div></form>`;
 }
 
-function renderMarkdown(markdown, moduleId) {
-  const lines = markdown.split("\n");
-  const output = [];
-  let index = 0;
-  while (index < lines.length) {
-    const line = lines[index].trim();
-    if (!line) { index += 1; continue; }
+const classes = { story: "story-opening", activity: "activity-card", "visual-prompt": "visual-prompt", bridge: "story-bridge", "property-grid": "feature-grid", "function-grid": "feature-grid", "plant-map": "plant-map", "safety-grid": "safety-grid", "label-check": "label-check" };
+function markdown(text, id) {
+  const lines = text.split("\n");
+  const out = [];
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i].trim();
+    if (!line) { i++; continue; }
     if (line.startsWith("::: ")) {
-      const type = line.slice(4).trim();
-      const inner = [];
-      index += 1;
-      while (index < lines.length && lines[index].trim() !== ":::") inner.push(lines[index++]);
-      index += 1;
-      if (type === "quiz") output.push(renderQuiz(inner, moduleId));
-      else {
-        const directiveClasses = {
-          visual: "visual-section",
-          activity: "activity-card full-activity",
-          story: "story-opening",
-          process: "process-summary",
-          "key-ideas": "key-ideas"
-        };
-        const tag = ["story", "process"].includes(type) ? "section" : "aside";
-        output.push(`<${tag} class="${directiveClasses[type] || "content-callout"}">${renderMarkdown(inner.join("\n"), moduleId)}</${tag}>`);
-      }
+      const kind = line.slice(4).trim(); const inner = []; i++;
+      while (i < lines.length && lines[i].trim() !== ":::") inner.push(lines[i++]);
+      i++;
+      out.push(kind === "quiz" ? quiz(inner, id) : `<section class="${classes[kind] || "content-callout"}">${markdown(inner.join("\n"), id)}</section>`);
       continue;
     }
-    if (/^!\[/.test(line)) {
-      const image = line.match(/^!\[(.*)\]\((.*)\)$/);
-      let caption = "";
-      let lookahead = index + 1;
-      while (lookahead < lines.length && !lines[lookahead].trim()) lookahead += 1;
-      if (/^\*.*\*$/.test(lines[lookahead]?.trim() || "")) {
-        caption = lines[lookahead].trim().slice(1, -1);
-        index = lookahead;
-      }
-      const source = `../../assets/images/${path.basename(image[2])}`;
-      const tall = source.includes("frasco-aceite") ? " tall-figure" : " wide-figure";
-      output.push(`<figure class="source-figure${tall}"><img src="${source}" alt="${escapeHtml(image[1])}" loading="lazy" /><figcaption>${renderInline(caption)}</figcaption></figure>`);
-      index += 1;
-      continue;
+    const image = line.match(/^!\[(.*)\]\((.*)\)$/);
+    if (image) {
+      let caption = ""; let j = i + 1; while (j < lines.length && !lines[j].trim()) j++;
+      if (/^\*.*\*$/.test(lines[j]?.trim() || "")) { caption = lines[j].trim().slice(1, -1); i = j; }
+      out.push(`<figure class="source-figure"><img src="../../assets/images/${esc(path.basename(image[2]))}" alt="${esc(image[1])}" loading="lazy"><figcaption>${inline(caption)}</figcaption></figure>`); i++; continue;
     }
-    if (/^##\s+/.test(line)) { output.push(`<h3>${renderInline(line.replace(/^##\s+/, ""))}</h3>`); index += 1; continue; }
-    if (/^###\s+/.test(line)) { output.push(`<h3>${renderInline(line.replace(/^###\s+/, ""))}</h3>`); index += 1; continue; }
-    if (/^>\s+/.test(line)) { output.push(`<blockquote>${renderInline(line.replace(/^>\s+/, ""))}</blockquote>`); index += 1; continue; }
-    if (/^-\s+/.test(line)) {
-      const items = [];
-      while (index < lines.length && /^-\s+/.test(lines[index].trim())) items.push(lines[index++].trim().replace(/^-\s+/, ""));
-      output.push(`<ul>${items.map((item) => `<li>${renderInline(item)}</li>`).join("")}</ul>`);
-      continue;
-    }
-    if (/^\d+\.\s+/.test(line)) {
-      const items = [];
-      while (index < lines.length && /^\d+\.\s+/.test(lines[index].trim())) items.push(lines[index++].trim().replace(/^\d+\.\s+/, ""));
-      output.push(`<ol>${items.map((item) => `<li>${renderInline(item)}</li>`).join("")}</ol>`);
-      continue;
-    }
-    const paragraph = [line];
-    index += 1;
-    while (index < lines.length) {
-      const next = lines[index].trim();
-      if (!next) { index += 1; break; }
-      if (/^(?:##|###|:::|>|-|\d+\.|!\[)/.test(next)) break;
-      paragraph.push(next);
-      index += 1;
-    }
-    output.push(`<p>${renderInline(paragraph.join(" "))}</p>`);
+    if (/^#\s+/.test(line)) { i++; continue; }
+    if (/^##\s+/.test(line)) { out.push(`<h2>${inline(line.replace(/^##\s+/, ""))}</h2>`); i++; continue; }
+    if (/^###\s+/.test(line)) { out.push(`<h3>${inline(line.replace(/^###\s+/, ""))}</h3>`); i++; continue; }
+    if (/^>\s+/.test(line)) { out.push(`<p class="module-objective">${inline(line.replace(/^>\s+/, ""))}</p>`); i++; continue; }
+    if (/^-\s+/.test(line)) { const items=[]; while (i < lines.length && /^-\s+/.test(lines[i].trim())) items.push(lines[i++].trim().replace(/^-\s+/, "")); out.push(`<ul>${items.map((v)=>`<li>${inline(v)}</li>`).join("")}</ul>`); continue; }
+    if (/^\d+\.\s+/.test(line)) { const items=[]; while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) items.push(lines[i++].trim().replace(/^\d+\.\s+/, "")); out.push(`<ol>${items.map((v)=>`<li>${inline(v)}</li>`).join("")}</ol>`); continue; }
+    const p=[line]; i++; while (i < lines.length && lines[i].trim() && !/^(?:#|>|-|\d+\.|:::|!\[)/.test(lines[i].trim())) p.push(lines[i++].trim());
+    out.push(`<p>${inline(p.join(" "))}</p>`);
   }
-  return output.join("\n");
+  return out.join("\n");
 }
 
-function contentDir(theme) {
-  const part = parts.find((item) => item.id === theme.part);
-  return path.join(content, `parte-${pad(part.id)}-${part.slug}`, `tema-${pad(theme.id)}-${theme.slug}`);
-}
-
-function themeView(theme) {
-  const themeMeta = parseFrontmatter(path.join(contentDir(theme), "tema.md"));
-  const modules = theme.modules.map((_, index) => parseFrontmatter(path.join(contentDir(theme), `modulo-${pad(index + 1)}.md`)));
-  return { ...theme, ...themeMeta, number: theme.id, modules };
-}
-
-const views = themes.map(themeView);
-const totalMinutes = views.flatMap((theme) => theme.modules).reduce((sum, module) => sum + Number(module.duracion), 0);
-
-function renderPublishedTheme(theme) {
-  const rawTheme = themes.find((item) => item.id === theme.number);
-  const modules = rawTheme.modules.map((_, index) => parseModule(path.join(contentDir(rawTheme), `modulo-${pad(index + 1)}.md`)));
-  const duration = modules.reduce((sum, module) => sum + Number(module.meta.duracion), 0);
-  const moduleNav = modules.map((module, index) => `<a href="#${module.meta.id}"><span>${pad(index + 1)}</span><strong>${escapeHtml(module.meta.titulo)}</strong><small>${escapeHtml(module.meta.duracion)} minutos</small></a>`).join("");
-  const articles = modules.map((module, index) => {
-    const objective = module.body.match(/^>\s+(.+)$/m)?.[1] || "";
-    const cleaned = module.body.replace(/^#\s+.+\n+/, "").replace(/^>\s+.+\n+/, "");
-    const timePlan = String(module.meta.tiempos || "").split("|").map((item) => {
-      const match = item.match(/^(\d+ min)\s+(.+)$/);
-      return match ? `<span><strong>${match[1]}</strong> ${escapeHtml(match[2])}</span>` : "";
-    }).join("");
-    return `<article class="module" id="${module.meta.id}" data-module="${module.meta.id}"><header class="module-header"><div class="module-number" aria-hidden="true">${pad(index + 1)}</div><div><p class="section-number">Capítulo ${index + 1} · ${module.meta.duracion} minutos</p><h2>${escapeHtml(module.meta.titulo)}</h2><p class="chapter-question">${escapeHtml(module.meta.pregunta)}</p><p class="module-objective">${renderInline(objective)}</p></div></header><div class="time-plan">${timePlan}</div>${renderMarkdown(cleaned, module.meta.id)}</article>`;
-  }).join("\n");
-  const statusItems = modules.map((module, index) => `<span data-status="${module.meta.id}">Módulo ${index + 1} pendiente</span>`).join("");
-  const body = `<nav class="breadcrumb" aria-label="Migas de pan"><a href="../../index.html">Índice</a><span aria-hidden="true">/</span><span>Parte 1</span></nav><section class="hero theme-hero"><div class="eyebrow">Tema ${pad(theme.number)} · ${duration} minutos</div><h1>${escapeHtml(theme.title)}</h1><p class="hero-intro">Un frasco concentra un aroma, pero también una historia. En este comienzo vamos a recorrerla hacia atrás y descubrir qué propiedades hacen único a un aceite esencial.</p><div class="course-meta"><span>${modules.length} módulos</span><span>${duration} minutos</span><span>2 imágenes</span><span>6 preguntas</span></div><button class="primary-button" id="start-course" type="button">Abrir la primera puerta</button></section><section class="learning-goal"><div><p class="section-number">La promesa del recorrido</p><h2>Mirar más allá del frasco</h2></div><p>${escapeHtml(theme.promise)}</p></section><p class="concept-hint"><span aria-hidden="true">+</span> Tocá los conceptos en <strong>negrita</strong> para ver una definición simple.</p><nav class="course-map" aria-label="Módulos del tema">${moduleNav}</nav>${articles}<section class="completion-panel" aria-labelledby="completion-title"><p class="section-number">Cierre del tema</p><h2 id="completion-title">La puerta quedó abierta</h2><p id="completion-message">Completaste 0 de ${modules.length} módulos.</p><div class="module-statuses">${statusItems}</div><p><a class="primary-button button-link light-button" href="../anatomia-vegetal/index.html">Continuar hacia anatomía vegetal →</a></p></section>`;
-  return `<!doctype html>\n<html lang="es"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Introducción narrativa a los aceites esenciales y su recorrido desde la planta." /><title>${escapeHtml(theme.title)} | De la planta a la esencia</title><link rel="stylesheet" href="../../styles.css?v=curso-3" /><script src="../../course-page.js?v=curso-3" defer></script></head><body><a class="skip-link" href="#contenido">Saltar al contenido</a><header class="site-header"><a class="brand" href="../../index.html" aria-label="Volver al índice"><span class="brand-mark" aria-hidden="true">E</span><span>De la planta a la esencia</span></a><div class="header-progress"><span id="progress-label">0 de ${modules.length} módulos</span><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="progress-label"><span id="progress-fill"></span></div></div></header><main id="contenido">${body}</main><footer><span>De la planta a la esencia · Tema ${pad(theme.number)}</span><button class="text-button" id="reset-progress" type="button">Reiniciar progreso</button></footer></body></html>`;
-}
-
-function shell({ title, description, depth = 0, body, script = "" }) {
+function shell({ title, description, body, pageClass = "", script = "", depth = 0 }) {
   const prefix = depth ? "../../" : "";
-  return `<!doctype html>\n<html lang="es">\n<head>\n  <meta charset="UTF-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n  <meta name="description" content="${escapeHtml(description)}" />\n  <title>${escapeHtml(title)} | De la planta a la esencia</title>\n  <link rel="stylesheet" href="${prefix}styles.css?v=curso-3" />${script ? `\n  <script src="${prefix}${script}" defer></script>` : ""}\n</head>\n<body class="course-hub">\n  <a class="skip-link" href="#contenido">Saltar al contenido</a>\n  <header class="site-header">\n    <a class="brand" href="${prefix}index.html" aria-label="Índice del curso"><span class="brand-mark" aria-hidden="true">E</span><span>De la planta a la esencia</span></a>\n    <span class="release-note">Curso en desarrollo</span>\n  </header>\n  <main id="contenido">${body}</main>\n  <footer><span>Curso de cosmética botánica y aceites esenciales</span><a href="${prefix}index.html">Volver al índice</a></footer>\n</body>\n</html>\n`;
+  return `<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="${esc(description)}"><title>${esc(title)} | Curso Esencias Naturales</title><link rel="stylesheet" href="${prefix}styles.css?v=v2-2">${script ? `<script src="${prefix}${script}?v=v2-2" defer></script>` : ""}</head><body class="${pageClass}"><a class="skip-link" href="#contenido">Saltar al contenido</a><header class="site-header"><a class="brand" href="${prefix}index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Curso Esencias Naturales</span></a><span class="release-note">Parte 1 disponible</span></header><main id="contenido">${body}</main><footer><span>Curso Esencias Naturales · De la planta a la esencia</span><a href="${prefix}index.html">Índice general</a></footer><dialog class="definition-dialog"><button type="button" aria-label="Cerrar">×</button><h2></h2><p></p></dialog></body></html>`;
 }
 
-const partSections = parts.map((part) => {
-  const cards = views.filter((theme) => Number(theme.part) === part.id).map((theme) => {
-    const duration = theme.modules.reduce((sum, module) => sum + Number(module.duracion), 0);
-    const available = theme.estado === "publicado";
-    return `<article class="theme-card${available ? " available" : ""}">\n` +
-      `  <div class="theme-card-top"><span>Tema ${pad(theme.number)}</span><span class="status-pill">${available ? "Disponible" : "Próximamente"}</span></div>\n` +
-      `  <h3>${escapeHtml(theme.title)}</h3><p>${escapeHtml(theme.promise)}</p>\n` +
-      `  <div class="theme-meta"><span>${theme.modules.length} módulos</span><span>${duration} min</span>${available ? `<span data-theme-progress="t${pad(theme.number)}" data-module-count="${theme.modules.length}">0/${theme.modules.length} completados</span>` : ""}</div>\n` +
-      `  <a href="temas/${theme.slug}/index.html">${available ? "Comenzar el tema" : "Ver el recorrido"} <span aria-hidden="true">→</span></a>\n` +
-      `</article>`;
-  }).join("\n");
-  return `<section class="part-section" aria-labelledby="parte-${part.id}"><div class="part-heading"><span>Parte ${part.id}</span><h2 id="parte-${part.id}">${escapeHtml(part.title)}</h2></div><div class="theme-grid">${cards}</div></section>`;
-}).join("\n");
+function moduleLink(number) { return `../../modulos/modulo-${pad(number)}/index.html`; }
+const totalModules = parts.flatMap((p) => p.modules).length;
+const totalMinutes = parts.reduce((sum, p) => sum + p.minutes, 0);
 
-const indexBody = `\n<section class="hero hub-hero"><div class="eyebrow">Un recorrido de la planta al emprendimiento</div><h1>De la planta a la esencia</h1><p class="hero-intro">Todo comienza mucho antes del frasco. Primero hay una planta que debemos aprender a mirar; después llegan el cultivo, la transformación y el desafío de convertir el aroma en una experiencia cosmética responsable.</p><div class="course-meta"><span>${parts.length} partes</span><span>${views.length} temas</span><span>${views.flatMap((theme) => theme.modules).length} módulos</span><span>${Math.floor(totalMinutes / 60)} h ${totalMinutes % 60} min</span></div><a class="primary-button button-link" href="#recorrido">Explorar el recorrido</a></section>\n` +
-  `<section class="learning-goal" id="recorrido"><div><p class="section-number">El mapa completo</p><h2>Una historia en seis movimientos</h2></div><p>Cada parte responde una pregunta y deja abierta la siguiente. Los temas se publicarán progresivamente; la introducción y el curso sobre semillas ya están disponibles.</p></section>\n${partSections}\n` +
-  `<aside class="safety-note"><p class="section-number">Un límite importante</p><h2>Aprender no equivale a habilitarse para fabricar o vender</h2><p>El recorrido tiene finalidad educativa y cosmética. No reemplaza formación profesional, evaluación de seguridad, habilitaciones ni registro de productos.</p></aside>`;
+const partCards = parts.map((part) => `<article class="part-card ${part.published ? "available" : "locked"}"><div class="part-card-number">${pad(part.id)}</div><div><div class="part-card-top"><span>${part.minutes} min</span><span class="status-pill">${part.published ? "Disponible" : "Próximamente"}</span></div><h2>${esc(part.title)}</h2><p class="part-question">${esc(part.question)}</p><p>${esc(part.achievement)}</p><div class="theme-meta"><span>${part.modules.length} módulos</span>${part.published ? `<span data-part-progress>0/${part.modules.length} completados</span>` : ""}</div><a href="partes/parte-${pad(part.id)}/index.html">${part.published ? "Entrar a la parte" : "Ver el temario"} <span aria-hidden="true">→</span></a></div></article>`).join("");
+const indexBody = `<section class="hero hub-hero"><div class="eyebrow">De la planta a la esencia</div><h1>Curso <em>Esencias Naturales</em></h1><p class="hero-intro">La travesía empieza con una gota y retrocede hasta la planta que la produjo. Después avanza por el cultivo, la extracción, la mezcla cosmética y la posibilidad de transformar conocimiento en un proyecto responsable.</p><div class="course-meta"><span>6 partes</span><span>${totalModules} módulos</span><span>${Math.floor(totalMinutes/60)} h ${totalMinutes%60} min</span></div><a class="primary-button button-link" href="partes/parte-01/index.html">Comenzar por la gota</a></section><section class="route-intro"><p class="section-number">El recorrido</p><h2>Seis preguntas, una sola historia</h2><p>Cada parte responde una pregunta y deja preparada la siguiente. La Parte 1 ya está completa; las demás muestran el rumbo antes de ser desarrolladas.</p></section><section class="parts-list">${partCards}</section>`;
+fs.writeFileSync(path.join(docs, "index.html"), shell({ title: "Inicio", description: "Curso narrativo sobre aceites esenciales y cosmética natural.", body: indexBody, pageClass: "course-hub", script: "hub.js" }));
 
-fs.writeFileSync(path.join(docs, "index.html"), shell({ title: "Inicio", description: "Curso narrativo de cosmética natural ligada a aceites esenciales.", body: indexBody, script: "hub.js?v=curso-1" }), "utf8");
-
-const introduction = views.find((theme) => theme.slug === "introduccion");
-fs.mkdirSync(path.join(docs, "temas", "introduccion"), { recursive: true });
-fs.writeFileSync(path.join(docs, "temas", "introduccion", "index.html"), renderPublishedTheme(introduction), "utf8");
-
-for (let index = 0; index < views.length; index += 1) {
-  const theme = views[index];
-  if (theme.estado === "publicado") continue;
-  const duration = theme.modules.reduce((sum, module) => sum + Number(module.duracion), 0);
-  const moduleCards = theme.modules.map((module, moduleIndex) => `<li><span>${pad(moduleIndex + 1)}</span><div><strong>${escapeHtml(module.titulo)}</strong><small>${module.duracion} minutos · ${escapeHtml(module.estado)}</small></div></li>`).join("\n");
-  const previous = views[index - 1];
-  const next = views[index + 1];
-  const nav = `<nav class="theme-navigation" aria-label="Navegación entre temas">${previous ? `<a href="../${previous.slug}/index.html">← ${escapeHtml(previous.title)}</a>` : "<span></span>"}${next ? `<a href="../${next.slug}/index.html">${escapeHtml(next.title)} →</a>` : ""}</nav>`;
-  const body = `<nav class="breadcrumb" aria-label="Migas de pan"><a href="../../index.html">Índice</a><span aria-hidden="true">/</span><span>Parte ${theme.part}</span></nav>` +
-    `<section class="hero theme-hero"><div class="eyebrow">Tema ${pad(theme.number)} · En preparación</div><h1>${escapeHtml(theme.title)}</h1><p class="hero-intro">${escapeHtml(theme.promise)}</p><div class="course-meta"><span>${theme.modules.length} módulos</span><span>${duration} minutos</span><span>Contenido estructurado</span></div></section>` +
-    `<section class="learning-goal"><div><p class="section-number">Próxima entrega</p><h2>El recorrido ya está definido</h2></div><p>Los módulos están preparados para recibir el desarrollo narrativo, las definiciones, las imágenes tratadas y sus cuestionarios. Esta página se activará cuando complete las revisiones editorial, visual y de seguridad.</p></section>` +
-    `<section class="module-preview" aria-labelledby="modulos"><h2 id="modulos">Módulos del tema</h2><ol>${moduleCards}</ol></section>${nav}`;
-  const out = path.join(docs, "temas", theme.slug);
-  fs.mkdirSync(out, { recursive: true });
-  fs.writeFileSync(path.join(out, "index.html"), shell({ title: theme.title, description: theme.promise, depth: 2, body }), "utf8");
+for (const part of parts) {
+  const cards = part.modules.map(([number, title, minutes], index) => `<li class="module-card ${part.published ? "available" : "locked"}"><span class="module-index">${pad(index + 1)}</span><div><small>${minutes} minutos</small><h3>${esc(title)}</h3>${part.published ? `<span data-module-status="p01-m${pad(index + 1)}">Pendiente</span>` : `<span>En preparación</span>`}</div>${part.published ? `<a aria-label="Abrir ${esc(title)}" href="${moduleLink(number)}">→</a>` : ""}</li>`).join("");
+  const body = `<nav class="breadcrumb"><a href="../../index.html">Índice</a><span>/</span><span>Parte ${part.id}</span></nav><section class="hero part-hero"><div class="eyebrow">Parte ${pad(part.id)} · ${part.minutes} minutos</div><h1>${esc(part.title)}</h1><p class="hero-intro">${esc(part.question)}</p><div class="part-achievement"><span>Al terminar</span><strong>${esc(part.achievement)}</strong></div></section><section class="module-preview"><p class="section-number">${part.modules.length} estaciones</p><h2>${part.published ? "Seguí la historia, módulo a módulo" : "El temario ya está trazado"}</h2><ol>${cards}</ol>${part.published ? `<a class="primary-button button-link" href="${moduleLink(1)}">Abrir el primer módulo</a>` : `<p class="coming-note">Esta parte se desarrollará respetando el nuevo guion.</p>`}</section>${part.published ? `<aside class="closing-teaser"><p class="section-number">Cierre integrador</p><h2>La historia de un aceite</h2><p>Al completar los cuatro módulos vas a construir una ficha que conecte origen, función, propiedades y precauciones.</p><a href="cierre.html">Ver la actividad final →</a></aside>` : ""}`;
+  const dir = path.join(docs, "partes", `parte-${pad(part.id)}`); fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), shell({ title: `Parte ${part.id} · ${part.title}`, description: part.question, body, pageClass: "part-page", script: part.published ? "course-page.js" : "", depth: 2 }));
 }
 
-console.log(`Sitio construido: índice y ${views.length} páginas temáticas.`);
+const moduleFiles = [1,2,3,4].map((n) => parse(path.join(content, `modulo-${pad(n)}.md`)));
+for (let i = 0; i < moduleFiles.length; i++) {
+  const { meta, body } = moduleFiles[i]; const number = i + 1;
+  const nav = `<nav class="module-navigation">${number > 1 ? `<a href="../modulo-${pad(number - 1)}/index.html">← Módulo ${number - 1}</a>` : `<a href="../../partes/parte-01/index.html">← Presentación</a>`}<a href="${number < 4 ? `../modulo-${pad(number + 1)}/index.html` : "../../partes/parte-01/cierre.html"}">${number < 4 ? `Módulo ${number + 1}` : "Cierre integrador"} →</a></nav>`;
+  const pageBody = `<nav class="breadcrumb"><a href="../../index.html">Índice</a><span>/</span><a href="../../partes/parte-01/index.html">Parte 1</a><span>/</span><span>Módulo ${number}</span></nav><article class="lesson" data-module="${meta.id}"><header class="lesson-hero"><div><p class="eyebrow">Módulo ${pad(number)} · ${meta.duracion} minutos</p><h1>${esc(meta.titulo)}</h1></div><div class="lesson-marker" aria-hidden="true">${pad(number)}</div></header><div class="reading-progress"><span></span></div><div class="lesson-content">${markdown(body, meta.id)}<section class="module-complete"><h2>Guardá esta estación</h2><p>Cuando puedas explicar la idea central con tus propias palabras, marcá el módulo como completado.</p><button class="primary-button complete-module" type="button">Marcar como completado</button></section>${nav}</div></article>`;
+  const dir = path.join(docs, "modulos", `modulo-${pad(number)}`); fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, "index.html"), shell({ title: meta.titulo, description: `Módulo ${number} de la Parte 1.`, body: pageBody, pageClass: "lesson-page", script: "course-page.js", depth: 2 }));
+}
+
+const closeBody = `<nav class="breadcrumb"><a href="../../index.html">Índice</a><span>/</span><a href="index.html">Parte 1</a><span>/</span><span>Cierre</span></nav><section class="hero closing-hero"><div class="eyebrow">Cierre integrador · Parte 1</div><h1>La historia de un aceite</h1><p class="hero-intro">Elegí un aceite y reconstruí su camino desde la planta hasta el frasco. La ficha se guarda en este dispositivo mientras la completás.</p></section><form class="oil-story" data-oil-story><label>Nombre común<input name="common" autocomplete="off"></label><label>Nombre botánico<input name="botanical" autocomplete="off" placeholder="Género especie"></label><label>Parte de la planta<select name="part"><option value="">Seleccionar</option><option>Flor</option><option>Hoja o parte aérea</option><option>Madera</option><option>Raíz</option><option>Resina</option><option>Cáscara</option><option>Otra</option></select></label><label>¿Qué función puede cumplir el aroma para la planta?<textarea name="function"></textarea></label><label>Dos propiedades materiales<textarea name="properties" placeholder="Por ejemplo: volátil…"></textarea></label><label>Dos precauciones<textarea name="precautions"></textarea></label><label>Una pregunta que todavía necesitás investigar<textarea name="question"></textarea></label><div class="form-actions"><button class="primary-button" type="submit">Guardar ficha</button><button class="text-button" type="button" data-print>Imprimir</button></div><p class="save-status" role="status"></p></form><nav class="module-navigation"><a href="../../modulos/modulo-04/index.html">← Volver al módulo 4</a><a href="../parte-02/index.html">Mirar la Parte 2 →</a></nav>`;
+fs.writeFileSync(path.join(docs, "partes", "parte-01", "cierre.html"), shell({ title: "La historia de un aceite", description: "Actividad integradora de la Parte 1.", body: closeBody, pageClass: "closing-page", script: "course-page.js", depth: 2 }));
+
+console.log("Sitio V2 construido: índice, 6 partes, 4 módulos y cierre integrador.");

@@ -1,106 +1,12 @@
 "use strict";
 
 const parts = [
-  { id: 1, slug: "conocer-la-planta", title: "Conocer la materia viva" },
-  { id: 2, slug: "cultivar-el-aroma", title: "Cultivar el aroma" },
-  { id: 3, slug: "transformar-la-planta", title: "Transformar la planta" },
-  { id: 4, slug: "comprender-la-esencia", title: "Comprender la esencia" },
-  { id: 5, slug: "del-aroma-a-la-cosmetica", title: "Del aroma a la cosmética" },
-  { id: 6, slug: "emprendimiento", title: "Del cultivo al emprendimiento" }
+  { id: 1, slug: "la-gota-que-lo-empieza-todo", title: "La gota que lo empieza todo", minutes: 95, question: "¿Qué es exactamente eso que huele, y por qué la planta lo fabrica?", achievement: "Saber qué hay en el frasco, de dónde viene y cómo acercarse a él con criterio.", published: true, modules: [[1, "Qué hay realmente dentro del frasco", 20], [2, "Por qué una planta fabrica su propio perfume", 25], [3, "Dónde vive el aroma: un mapa de la planta", 25], [4, "La primera regla: nunca puro sobre la piel", 25]] },
+  { id: 2, slug: "aprender-a-leer-la-planta", title: "Aprender a leer la planta", minutes: 105, question: "¿Cómo reconocer y registrar la planta correcta?", achievement: "Identificar, documentar y conservar material vegetal útil.", modules: [[5, "Hoja, tallo y raíz: anatomía con un propósito", 30], [6, "Flor, fruto y semilla: dónde se concentra la esencia", 30], [7, "Llamar a cada planta por su nombre", 20], [8, "El herbario: tu archivo de referencia", 25]] },
+  { id: 3, slug: "cultivar-y-cosechar-el-aroma", title: "Cultivar y cosechar el aroma", minutes: 95, question: "¿Qué decisiones de cultivo cambian lo que va a salir del alambique?", achievement: "Llevar una planta aromática desde el suelo hasta material seco listo para destilar.", modules: [[9, "Suelo, agua y abono: cultivar sin diluir el aroma", 25], [10, "Cortar para que rinda: poda y pinzado", 25], [11, "Defender el cultivo sin arruinar la cosecha", 20], [12, "Secar sin perder la esencia", 25]] },
+  { id: 4, slug: "del-vegetal-a-la-esencia", title: "Del vegetal a la esencia", minutes: 175, question: "¿Cómo se separa el aroma de la planta?", achievement: "Describir un proceso de extracción completo y estimar su rendimiento.", modules: [[13, "Antes de encender nada: higiene y seguridad", 20], [14, "La física que hace posible el alambique", 25], [15, "Mezclas: todo lo que se puede separar", 25], [16, "Destilación: el corazón del oficio", 30], [17, "Vapor, vacío y fraccionamiento: elegir la destilación", 25], [18, "Cuando destilar no alcanza: disolventes, CO₂ y prensado", 25], [19, "¿Cuánto sale? Calcular el rendimiento", 25]] },
+  { id: 5, slug: "reconocer-mezclar-y-usar", title: "Reconocer, mezclar y usar con criterio", minutes: 210, question: "¿Cómo sé que este aceite es bueno, y qué puedo hacer con él sin prometer lo que no puedo?", achievement: "Evaluar un aceite, diluirlo correctamente y construir una mezcla aromática.", modules: [[20, "La química del aroma en palabras simples", 25], [21, "Cromatografía: la huella digital de un aceite", 25], [22, "Calidad, adulteración y conservación", 20], [23, "Diluir bien: aceites vehiculares y proporciones", 25], [24, "El olfato, la memoria y un límite honesto", 25], [25, "Notas altas, medias y base: construir una fragancia", 25], [26, "Preparaciones cosméticas y ambientales", 25], [27, "El contacto: masaje con aceites esenciales", 20], [28, "Contraindicaciones: cuándo no", 20]] },
+  { id: 6, slug: "del-aroma-al-emprendimiento", title: "Del aroma al emprendimiento", minutes: 70, question: "¿Puede esto sostenerse como actividad productiva?", achievement: "Evaluar con realismo un emprendimiento esenciero.", modules: [[29, "La esencia que nace como subproducto", 20], [30, "Ventajas y límites de la agroindustria esenciera", 25], [31, "Mercado, nichos y responsabilidad", 25]] }
 ];
 
-const themes = [
-  {
-    id: 1, part: 1, slug: "introduccion", title: "El comienzo del viaje",
-    published: true,
-    source: "01_introduccion.pdf", pages: 12,
-    promise: "Descubrir qué son los aceites esenciales y por qué el recorrido comienza mucho antes del frasco.",
-    modules: [["El aroma que abre la puerta", 20], ["Qué es un aceite esencial", 25]]
-  },
-  {
-    id: 2, part: 1, slug: "anatomia-vegetal", title: "Anatomía vegetal",
-    source: "02_anatomia_vegetal.pdf", pages: 48,
-    promise: "Aprender a leer la planta como un sistema de estructuras relacionadas.",
-    modules: [["Leer una hoja", 25], ["Raíces y sostén", 25], ["Tallos que transportan", 25], ["Flores y frutos", 30]]
-  },
-  {
-    id: 3, part: 1, slug: "semillas", title: "El secreto de las semillas",
-    source: "03_semillas.pdf", pages: 32, published: true,
-    promise: "Seguir la vida vegetal desde lo que una semilla guarda hasta el momento en que despierta.",
-    modules: [["El secreto interior", 25], ["La bifurcación", 25], ["Bajo el fruto", 25], ["El despertar", 30]]
-  },
-  {
-    id: 4, part: 1, slug: "herbario", title: "El herbario",
-    source: "04_herbario.pdf", pages: 60,
-    promise: "Transformar la observación botánica en un registro que pueda conservarse y compararse.",
-    modules: [["Un archivo vivo", 25], ["Recolectar sin perder información", 25], ["Prensar, identificar y conservar", 30], ["Propiedades que anticipan la extracción", 25]]
-  },
-  {
-    id: 5, part: 2, slug: "labores-culturales", title: "Labores culturales",
-    source: "05_labores_culturales.pdf", pages: 42,
-    promise: "Comprender las decisiones de cultivo que acompañan a la planta hasta la cosecha.",
-    modules: [["Preparar el terreno", 25], ["Agua y nutrición", 25], ["Competencia y protección", 30], ["Cosecha y secado", 25]]
-  },
-  {
-    id: 6, part: 2, slug: "tecnicas-poda", title: "Técnicas de poda",
-    source: "06_tecnicas_poda.pdf", pages: 53,
-    promise: "Leer cada corte como una intervención que modifica el crecimiento de la planta.",
-    modules: [["Por qué podar", 20], ["Herramientas y cortes", 25], ["Ciclo y mantenimiento", 25]]
-  },
-  {
-    id: 7, part: 3, slug: "seguridad-laboratorio", title: "Higiene y seguridad",
-    source: "07_seguridad_laboratorio.pdf", pages: 4,
-    promise: "Convertir la seguridad en una rutina previa a cualquier transformación.",
-    modules: [["Antes de entrar al laboratorio", 20], ["Rutinas que protegen", 20]]
-  },
-  {
-    id: 8, part: 3, slug: "tecnicas-separacion", title: "Técnicas de separación",
-    source: "08_tecnicas_separacion.pdf", pages: 35,
-    promise: "Reconocer las propiedades que permiten separar los componentes de una mezcla.",
-    modules: [["Materia y mezclas", 25], ["Tamaño y densidad", 25], ["Cambios de estado", 25], ["Destilación y cromatografía", 25]]
-  },
-  {
-    id: 9, part: 3, slug: "extraccion", title: "Extracción de aceites esenciales",
-    source: "09_extraccion_aceites.pdf", pages: 35,
-    promise: "Acompañar al aroma desde el tejido vegetal hasta su separación.",
-    modules: [["El viaje de la destilación", 25], ["La fuerza del vapor", 25], ["Variantes de destilación", 30], ["Otros métodos y filtrado", 25]]
-  },
-  {
-    id: 10, part: 4, slug: "origen-aceites", title: "Origen y naturaleza de los aceites",
-    source: "10_origen_aceites.pdf", pages: 57,
-    promise: "Entender dónde se forman las esencias y qué permite reconocer su identidad y calidad.",
-    modules: [["Dónde se esconde la esencia", 25], ["Volatilidad y propiedades", 25], ["Calidad, rendimiento y nomenclatura", 30], ["La química del aroma", 25], ["La identidad cromatográfica", 25]]
-  },
-  {
-    id: 11, part: 4, slug: "tipos-aceites", title: "Tipos de aceites esenciales",
-    source: "11_tipos_aceites.pdf", pages: 62,
-    promise: "Construir criterios simples para reconocer, elegir, diluir y conservar aceites.",
-    modules: [["Familias y perfiles", 25], ["Criterios de selección", 25], ["Aceites vehiculares", 25], ["Dilución y conservación", 25], ["Uso cosmético responsable", 25]]
-  },
-  {
-    id: 12, part: 5, slug: "aromaterapia-sensorial", title: "Aromaterapia sensorial",
-    source: "12_aromaterapia_sensorial.pdf", pages: 93,
-    promise: "Explorar la experiencia del aroma sin convertirla en una promesa médica.",
-    modules: [["El olfato abre la historia", 25], ["Aroma, memoria y percepción", 25], ["Formas de uso y límites", 25], ["Preparaciones cosméticas y ambientales", 30]]
-  },
-  {
-    id: 13, part: 5, slug: "arquitectura-fragancias", title: "Arquitectura de una fragancia",
-    source: "13_arquitectura_fragancias.pdf", pages: 63,
-    promise: "Seguir una fragancia en el tiempo y comprender cómo se organizan sus notas.",
-    modules: [["Notas de salida", 20], ["Notas de corazón", 25], ["Notas de fondo", 25], ["Construir una experiencia aromática", 25]]
-  },
-  {
-    id: 14, part: 5, slug: "tecnicas-masaje", title: "Técnicas de masaje",
-    source: "14_tecnicas_masaje.pdf", pages: 17,
-    promise: "Introducir el contacto cosmético mediante maniobras básicas y límites claros.",
-    modules: [["Preparar el contacto", 20], ["Maniobras básicas y límites seguros", 25]]
-  },
-  {
-    id: 15, part: 6, slug: "agroindustria-esenciera", title: "Agroindustria esenciera",
-    source: "15_agroindustria_esenciera.pdf", pages: 30,
-    promise: "Conectar el cultivo y la transformación con una mirada responsable de emprendimiento.",
-    modules: [["De la planta a la cadena productiva", 25], ["Calidad, demanda y costos", 25], ["Emprender responsablemente", 30]]
-  }
-];
-
-module.exports = { parts, themes };
+module.exports = { parts };

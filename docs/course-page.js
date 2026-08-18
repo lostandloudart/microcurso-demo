@@ -1,137 +1,68 @@
-const storageKey = "planta-esencia-progress-v1";
-const moduleElements = [...document.querySelectorAll("[data-module]")];
-const moduleIds = moduleElements.map((module) => module.dataset.module);
+const storageKey = "planta-esencia-progress-v2";
+const storyKey = "planta-esencia-oil-story-v2";
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
-function loadProgress() {
-  try {
-    return JSON.parse(localStorage.getItem(storageKey)) || {};
-  } catch {
-    return {};
+const dialog = document.querySelector(".definition-dialog");
+document.querySelectorAll(".concept-term").forEach((term) => term.addEventListener("click", () => {
+  dialog.querySelector("h2").textContent = term.textContent;
+  dialog.querySelector("p").textContent = term.dataset.definition;
+  dialog.showModal();
+}));
+dialog?.querySelector("button")?.addEventListener("click", () => dialog.close());
+dialog?.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+
+function save() { localStorage.setItem(storageKey, JSON.stringify(progress)); }
+function refresh() {
+  document.querySelectorAll("[data-module-status]").forEach((item) => {
+    const done = Boolean(progress[item.dataset.moduleStatus]);
+    item.textContent = done ? "Completado" : "Pendiente";
+    item.classList.toggle("complete", done);
+  });
+  const lesson = document.querySelector("[data-module]");
+  const button = document.querySelector(".complete-module");
+  if (lesson && button) {
+    const done = Boolean(progress[lesson.dataset.module]);
+    button.textContent = done ? "Módulo completado ✓" : "Marcar como completado";
+    button.classList.toggle("is-complete", done);
   }
 }
 
-let progress = loadProgress();
-const conceptTerms = [...document.querySelectorAll(".concept-term")];
-
-function closeConceptPopups(except = null) {
-  conceptTerms.forEach((term) => {
-    if (term === except) return;
-    term.setAttribute("aria-expanded", "false");
-    const popup = document.querySelector(`#${term.getAttribute("aria-controls")}`);
-    if (popup) popup.hidden = true;
+document.querySelectorAll("[data-module-quiz]").forEach((form) => form.addEventListener("submit", (event) => {
+  event.preventDefault(); let correct = 0; let missing = 0;
+  const fields = [...form.querySelectorAll("fieldset")];
+  fields.forEach((field) => {
+    const chosen = field.querySelector("input:checked");
+    const message = field.querySelector(".question-feedback");
+    message.className = "question-feedback";
+    if (!chosen) { missing++; message.textContent = "Elegí una respuesta."; message.classList.add("incorrect"); }
+    else if (chosen.value === field.dataset.answer) { correct++; message.textContent = field.dataset.feedback; message.classList.add("correct"); }
+    else { message.textContent = "Todavía no. Volvé a la idea central y probá otra vez."; message.classList.add("incorrect"); }
   });
-}
+  const result = form.querySelector(".quiz-result");
+  result.textContent = missing ? `Faltan ${missing} respuestas.` : correct === fields.length ? `¡Muy bien! ${correct} de ${fields.length} respuestas correctas.` : `${correct} de ${fields.length}. Podés volver a intentarlo.`;
+  result.focus();
+}));
 
-conceptTerms.forEach((term, index) => {
-  const wrapper = document.createElement("span");
-  const popup = document.createElement("span");
-  const popupId = `concept-definition-${index + 1}`;
-  wrapper.className = "concept-wrap";
-  popup.className = "concept-popup";
-  popup.id = popupId;
-  popup.setAttribute("role", "tooltip");
-  popup.textContent = term.dataset.definition;
-  popup.hidden = true;
-  term.before(wrapper);
-  wrapper.append(term, popup);
-  term.setAttribute("aria-expanded", "false");
-  term.setAttribute("aria-controls", popupId);
-  term.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const willOpen = term.getAttribute("aria-expanded") !== "true";
-    closeConceptPopups(term);
-    term.setAttribute("aria-expanded", String(willOpen));
-    popup.hidden = !willOpen;
-  });
+document.querySelector(".complete-module")?.addEventListener("click", () => {
+  const id = document.querySelector("[data-module]").dataset.module;
+  progress[id] = !progress[id]; save(); refresh();
 });
 
-document.addEventListener("click", () => closeConceptPopups());
-document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
-  const openTerm = document.querySelector('.concept-term[aria-expanded="true"]');
-  closeConceptPopups();
-  if (openTerm) openTerm.focus();
-});
+const bar = document.querySelector(".reading-progress span");
+if (bar) addEventListener("scroll", () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = `${max > 0 ? Math.min(100, scrollY / max * 100) : 100}%`;
+}, { passive: true });
 
-function saveProgress() {
-  localStorage.setItem(storageKey, JSON.stringify(progress));
-}
-
-function updateProgressDisplay() {
-  const completed = moduleIds.filter((id) => progress[id]).length;
-  const percentage = moduleIds.length ? Math.round((completed / moduleIds.length) * 100) : 0;
-  const label = document.querySelector("#progress-label");
-  const bar = document.querySelector(".progress-track");
-  if (label) label.textContent = `${completed} de ${moduleIds.length} módulos`;
-  if (bar) bar.setAttribute("aria-valuenow", String(percentage));
-  const fill = document.querySelector("#progress-fill");
-  if (fill) fill.style.width = `${percentage}%`;
-  moduleElements.forEach((module, index) => {
-    const complete = Boolean(progress[module.dataset.module]);
-    module.dataset.complete = String(complete);
-    const status = document.querySelector(`[data-status="${module.dataset.module}"]`);
-    if (status) {
-      status.textContent = complete ? `Módulo ${index + 1} completado` : `Módulo ${index + 1} pendiente`;
-      status.classList.toggle("complete", complete);
-    }
-  });
-  const message = document.querySelector("#completion-message");
-  if (message) message.textContent = completed === moduleIds.length
-    ? "Tema completo: ya podés continuar hacia la anatomía vegetal."
-    : `Completaste ${completed} de ${moduleIds.length} módulos.`;
-}
-
-document.querySelector("#start-course")?.addEventListener("click", () => {
-  const first = moduleElements[0];
-  const heading = first?.querySelector("h2");
-  first?.scrollIntoView();
-  if (heading) {
-    heading.setAttribute("tabindex", "-1");
-    heading.focus({ preventScroll: true });
-  }
-});
-
-document.querySelectorAll("[data-module-quiz]").forEach((form) => {
-  form.addEventListener("submit", (event) => {
+const story = document.querySelector("[data-oil-story]");
+if (story) {
+  try { const saved = JSON.parse(localStorage.getItem(storyKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (story.elements[name]) story.elements[name].value = value; }); } catch {}
+  story.addEventListener("submit", (event) => {
     event.preventDefault();
-    const fieldsets = [...form.querySelectorAll("fieldset")];
-    let correct = 0;
-    let unanswered = 0;
-    fieldsets.forEach((fieldset) => {
-      const selected = fieldset.querySelector("input:checked");
-      const feedback = fieldset.querySelector(".question-feedback");
-      feedback.classList.remove("correct", "incorrect");
-      if (!selected) {
-        unanswered += 1;
-        feedback.textContent = "Seleccioná una respuesta.";
-        feedback.classList.add("incorrect");
-      } else if (selected.value === fieldset.dataset.answer) {
-        correct += 1;
-        feedback.textContent = fieldset.dataset.feedback;
-        feedback.classList.add("correct");
-      } else {
-        feedback.textContent = "Revisá la explicación e intentá nuevamente.";
-        feedback.classList.add("incorrect");
-      }
-    });
-    const result = form.querySelector(".quiz-result");
-    if (unanswered) result.textContent = `Faltan ${unanswered} ${unanswered === 1 ? "respuesta" : "respuestas"}.`;
-    else if (correct === fieldsets.length) {
-      result.textContent = `Módulo aprobado: ${correct} de ${fieldsets.length} respuestas correctas.`;
-      progress[form.dataset.moduleQuiz] = true;
-      saveProgress();
-      updateProgressDisplay();
-    } else result.textContent = `Resultado: ${correct} de ${fieldsets.length}. Podés intentarlo nuevamente.`;
-    result.focus();
+    localStorage.setItem(storyKey, JSON.stringify(Object.fromEntries(new FormData(story))));
+    story.querySelector(".save-status").textContent = "Ficha guardada en este dispositivo.";
   });
-});
-
-document.querySelector("#reset-progress")?.addEventListener("click", () => {
-  moduleIds.forEach((id) => { delete progress[id]; });
-  saveProgress();
-  document.querySelectorAll(".module-quiz").forEach((form) => form.reset());
-  document.querySelectorAll(".question-feedback, .quiz-result").forEach((item) => { item.textContent = ""; });
-  updateProgressDisplay();
-});
-
-updateProgressDisplay();
+  story.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+refresh();
