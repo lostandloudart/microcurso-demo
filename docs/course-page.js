@@ -1,5 +1,6 @@
 const storageKey = "planta-esencia-progress-v2";
 const storyKey = "planta-esencia-oil-story-v2";
+const herbariumKey = "planta-esencia-herbarium-v2";
 let progress = {};
 try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
@@ -64,5 +65,16 @@ if (story) {
     story.querySelector(".save-status").textContent = "Ficha guardada en este dispositivo.";
   });
   story.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+
+const herbarium = document.querySelector("[data-herbarium-record]");
+if (herbarium) {
+  try { const saved = JSON.parse(localStorage.getItem(herbariumKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (herbarium.elements[name]) herbarium.elements[name].value = value; }); } catch {}
+  herbarium.addEventListener("submit", (event) => {
+    event.preventDefault();
+    localStorage.setItem(herbariumKey, JSON.stringify(Object.fromEntries(new FormData(herbarium))));
+    herbarium.querySelector(".save-status").textContent = "Las tres fichas quedaron guardadas en este dispositivo.";
+  });
+  herbarium.querySelector("[data-print]")?.addEventListener("click", () => print());
 }
 refresh();

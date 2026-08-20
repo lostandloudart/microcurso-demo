@@ -394,6 +394,13 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
 .oil-story label:nth-of-type(n+4) { grid-column: 1 / -1; }
 .oil-story input, .oil-story select, .oil-story textarea { width: 100%; padding: .8rem; border: 1px solid #bac4b5; border-radius: .55rem; color: var(--ink); background: #fffdf7; font: inherit; font-weight: 500; }
 .oil-story textarea { min-height: 7rem; resize: vertical; }
+.herbarium-record { display: grid; gap: 1.4rem; max-width: 66rem; margin: 0 auto 4rem; }
+.herbarium-sheet { padding: clamp(1.25rem,4vw,2rem); border: 1px solid var(--line); border-radius: 1rem; background: white; box-shadow: var(--shadow); }
+.herbarium-sheet legend { padding: 0 .65rem; color: var(--forest); font-family: var(--display); font-size: 1.5rem; font-weight: 800; }
+.herbarium-sheet .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.herbarium-sheet label { display: grid; gap: .4rem; color: var(--forest); font-size: .84rem; font-weight: 800; }
+.herbarium-sheet input, .herbarium-sheet select, .herbarium-sheet textarea { width: 100%; padding: .8rem; border: 1px solid #bac4b5; border-radius: .55rem; color: var(--ink); background: #fffdf7; font: inherit; font-weight: 500; }
+.herbarium-sheet textarea { min-height: 6rem; resize: vertical; }
 .form-actions { display: flex; gap: 1rem; align-items: center; }
 .save-status { align-self: center; margin: 0; color: var(--forest); font-weight: 700; }
 
@@ -410,6 +417,7 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
   .module-navigation, .form-actions { align-items: flex-start; flex-direction: column; }
   .oil-story { grid-template-columns: 1fr; }
   .oil-story label { grid-column: 1 !important; }
+  .herbarium-sheet .form-grid { grid-template-columns: 1fr; }
 }
 
 @media print {
@@ -417,4 +425,5 @@ footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem
   body { background: white; }
   main { width: 100%; }
   .oil-story { box-shadow: none; }
+  .herbarium-sheet { box-shadow: none; }
 }
