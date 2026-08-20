@@ -1,5 +1,13 @@
 # Control de cambios
 
+## 2026-08-20
+
+- Se desarrolló y publicó la Parte 2 completa: cuatro módulos narrativos de 20 a 30 minutos y cierre integrador.
+- Se conectó el recorrido entre anatomía vegetativa, reproducción, nomenclatura y herbario.
+- Se trataron e inventariaron cuatro imágenes nuevas, una por módulo.
+- Se agregó el registro editable de tres fichas de herbario con guardado local e impresión.
+- Se generalizó el generador para publicar múltiples partes, navegar entre sus módulos y calcular su progreso por separado.
+
 ## 2026-08-18 · Publicación
 
 - Se adoptó **Curso Esencias Naturales** como nombre visible del sitio.

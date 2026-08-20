@@ -10,4 +10,12 @@ Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 
 4. [La primera regla: nunca puro sobre la piel](parte-01-la-gota-que-lo-empieza-todo/modulo-04.md) · 25 min
 5. [Cierre integrador: la historia de un aceite](parte-01-la-gota-que-lo-empieza-todo/cierre.md)
 
-Las partes 2 a 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.
+## Parte 2 · Aprender a leer la planta — publicada
+
+1. [Hoja, tallo y raíz: anatomía con un propósito](parte-02-aprender-a-leer-la-planta/modulo-05.md) · 30 min
+2. [Flor, fruto y semilla: dónde se concentra la esencia](parte-02-aprender-a-leer-la-planta/modulo-06.md) · 30 min
+3. [Llamar a cada planta por su nombre](parte-02-aprender-a-leer-la-planta/modulo-07.md) · 20 min
+4. [El herbario: tu archivo de referencia](parte-02-aprender-a-leer-la-planta/modulo-08.md) · 25 min
+5. [Cierre integrador: tu primer archivo botánico](parte-02-aprender-a-leer-la-planta/cierre.md)
+
+Las partes 3 a 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.

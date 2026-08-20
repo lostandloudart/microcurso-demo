@@ -1,14 +1,15 @@
 # Estado del curso
 
-Actualizado: 18 de agosto de 2026.
+Actualizado: 20 de agosto de 2026.
 
 | Componente | Estado | Próximo paso |
 |---|---|---|
 | Estructura editorial V2 | Completa: 6 partes y 31 módulos | Mantener al desarrollar cada parte |
 | PDF únicos | 15 copiados y verificados | No publicar los originales |
 | Parte 1 | 4 módulos y cierre publicados | Revisar con lectores de prueba |
-| Partes 2 a 6 | Temario visible, contenido pendiente | Desarrollar módulo por módulo |
-| Inventario visual | 4 imágenes V2 publicadas | Agregar candidatos por módulo |
+| Parte 2 | 4 módulos y cierre publicados | Revisar con lectores de prueba |
+| Partes 3 a 6 | Temario visible, contenido pendiente | Desarrollar módulo por módulo |
+| Inventario visual | 8 imágenes V2 publicadas | Agregar candidatos por módulo |
 | Sitio índice | Arquitectura V2 operativa | Publicar nuevas partes progresivamente |
 | Versión anterior | Conservada en `ARCHIVO_V1` | No mezclar con el sitio activo |
 
