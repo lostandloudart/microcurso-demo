@@ -3,6 +3,7 @@ const storyKey = "planta-esencia-oil-story-v2";
 const herbariumKey = "planta-esencia-herbarium-v2";
 const cropCalendarKey = "planta-esencia-crop-calendar-v2";
 const extractionPlanKey = "planta-esencia-extraction-plan-v2";
+const blendPlanKey = "planta-esencia-blend-plan-v2";
 let progress = {};
 try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
@@ -111,5 +112,21 @@ if (extractionPlan) {
     extractionPlan.querySelector(".save-status").textContent = "El proceso de extracción quedó guardado en este dispositivo.";
   });
   extractionPlan.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+
+const blendPlan = document.querySelector("[data-blend-plan]");
+if (blendPlan) {
+  try { const saved = JSON.parse(localStorage.getItem(blendPlanKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (blendPlan.elements[name]) blendPlan.elements[name].value = value; }); } catch {}
+  const totalDrops = () => {
+    const total = [1,2,3].reduce((sum, number) => sum + Number(blendPlan.elements[`oil${number}-drops`].value || 0), 0);
+    blendPlan.elements["total-drops"].value = total || "";
+  };
+  [1,2,3].forEach((number) => blendPlan.elements[`oil${number}-drops`].addEventListener("input", totalDrops));
+  blendPlan.addEventListener("submit", (event) => {
+    event.preventDefault(); totalDrops();
+    localStorage.setItem(blendPlanKey, JSON.stringify(Object.fromEntries(new FormData(blendPlan))));
+    blendPlan.querySelector(".save-status").textContent = "La mezcla quedó guardada en este dispositivo.";
+  });
+  blendPlan.querySelector("[data-print]")?.addEventListener("click", () => print());
 }
 refresh();

@@ -2,6 +2,11 @@
 
 ## 2026-08-22
 
+- Se desarrolló la Parte 5 completa: nueve módulos narrativos de 20 a 25 minutos y cierre integrador.
+- Se conectó composición, cromatografía, conservación, dilución, percepción, perfumería, formatos cosméticos, contacto y contraindicaciones.
+- Se reconstruyeron nueve visuales didácticos y se agregó una ficha de mezcla con suma automática de gotas.
+- Se delimitó el curso a experiencia sensorial y cosmética, sin diagnóstico, prescripción ni promesas de curación.
+- Se extendió el sitio a veintiocho módulos distribuidos en cinco partes.
 - Se desarrolló la Parte 4 completa: siete módulos narrativos de 20 a 30 minutos y cierre integrador.
 - Se conectó el recorrido entre seguridad, física, mezclas, destilación, métodos alternativos y rendimiento.
 - Se reconstruyeron siete visuales didácticos basados únicamente en las relaciones de las fuentes.
