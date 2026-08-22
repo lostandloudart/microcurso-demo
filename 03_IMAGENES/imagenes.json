@@ -418,5 +418,54 @@
     "estado": "Publicada",
     "notas_revision": "Se aisló el esquema técnico y se eliminó el texto general de la diapositiva.",
     "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m01-img01", "parte": 4, "tema": "Parte 4", "modulo": 13,
+    "titulo": "Puesto seguro de destilación", "descripcion": "Controles reconstruidos de un puesto antes del encendido.",
+    "pdf_origen": "07_seguridad_laboratorio.pdf | 11_tipos_aceites.pdf", "pagina_origen": "3-4 | 61", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-13/01_originales/p04-m01-img01-puesto-seguro-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-13/02_recortes/p04-m01-img01-puesto-seguro-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-13/03_web/p04-m01-img01-puesto-seguro-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Diagrama de un puesto de destilación con protección, montaje firme, superficie libre y aceite lejos del calor.", "epigrafe": "Un puesto seguro separa el calor, el material inflamable y la circulación.", "consigna_observacion": "Seguir los cuatro controles antes de encender.", "estado": "Publicada", "notas_revision": "Visual reconstruido con las reglas de las fuentes.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m02-img01", "parte": 4, "tema": "Parte 4", "modulo": 14,
+    "titulo": "Equilibrio entre líquido y vapor", "descripcion": "Moléculas que evaporan y condensan entre dos fases.",
+    "pdf_origen": "04_herbario.pdf", "pagina_origen": "41-42", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-14/01_originales/p04-m02-img01-equilibrio-vapor-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-14/02_recortes/p04-m02-img01-equilibrio-vapor-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-14/03_web/p04-m02-img01-equilibrio-vapor-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Moléculas pasan de la fase líquida a la de vapor y regresan.", "epigrafe": "La presión de vapor aparece en un equilibrio dinámico.", "consigna_observacion": "Comparar evaporación y condensación.", "estado": "Publicada", "notas_revision": "Relación reconstruida desde el esquema fuente.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m03-img01", "parte": 4, "tema": "Parte 4", "modulo": 15,
+    "titulo": "Mapa de separaciones", "descripcion": "Propiedades conectadas con métodos físicos de separación.",
+    "pdf_origen": "08_tecnicas_separacion.pdf", "pagina_origen": "22-34", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-15/01_originales/p04-m03-img01-mapa-separaciones-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-15/02_recortes/p04-m03-img01-mapa-separaciones-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-15/03_web/p04-m03-img01-mapa-separaciones-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Mapa de tamaño, densidad, magnetismo y ebullición con sus métodos de separación.", "epigrafe": "El método se elige por la propiedad que distingue los componentes.", "consigna_observacion": "Recorrer del método a la propiedad.", "estado": "Publicada", "notas_revision": "Síntesis reconstruida de los métodos listados.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m04-img01", "parte": 4, "tema": "Parte 4", "modulo": 16,
+    "titulo": "Recorrido por el alambique", "descripcion": "Balón, cabezal, refrigerante y colector.",
+    "pdf_origen": "09_extraccion_aceites.pdf", "pagina_origen": "8-12", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-16/01_originales/p04-m04-img01-recorrido-alambique-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-16/02_recortes/p04-m04-img01-recorrido-alambique-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-16/03_web/p04-m04-img01-recorrido-alambique-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "El vapor sale del balón, atraviesa el refrigerante y llega al colector.", "epigrafe": "El calor libera el vapor y el refrigerante lo devuelve a líquido.", "consigna_observacion": "Seguir las corrientes de vapor y agua.", "estado": "Publicada", "notas_revision": "Montaje simplificado sin alterar sus piezas.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m05-img01", "parte": 4, "tema": "Parte 4", "modulo": 17,
+    "titulo": "Tres destilaciones", "descripcion": "Comparación de simple, fraccionada y al vacío.",
+    "pdf_origen": "09_extraccion_aceites.pdf", "pagina_origen": "16-28", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-17/01_originales/p04-m05-img01-tres-destilaciones-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-17/02_recortes/p04-m05-img01-tres-destilaciones-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-17/03_web/p04-m05-img01-tres-destilaciones-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Tres montajes: simple, con columna de fraccionamiento y conectado al vacío.", "epigrafe": "Una pieza distintiva revela el propósito de cada montaje.", "consigna_observacion": "Identificar columna y conexión de vacío.", "estado": "Publicada", "notas_revision": "Comparación reconstruida desde los montajes fuente.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m06-img01", "parte": 4, "tema": "Parte 4", "modulo": 18,
+    "titulo": "Métodos alternativos", "descripcion": "Comparación de vapor, disolventes, CO2 y prensado.",
+    "pdf_origen": "09_extraccion_aceites.pdf | 10_origen_aceites.pdf", "pagina_origen": "29-35 | 9-10", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-18/01_originales/p04-m06-img01-metodos-alternativos-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-18/02_recortes/p04-m06-img01-metodos-alternativos-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-18/03_web/p04-m06-img01-metodos-alternativos-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Cuatro columnas comparan vapor, disolventes, CO2 supercrítico y prensado.", "epigrafe": "Cada método equilibra temperatura, pureza, costo y equipo.", "consigna_observacion": "Encontrar el método de baja temperatura y alto costo.", "estado": "Publicada", "notas_revision": "Tabla reconstruida solo con relaciones de las fuentes.", "fecha_actualizacion": "2026-08-22"
+  },
+  {
+    "id": "p04-m07-img01", "parte": 4, "tema": "Parte 4", "modulo": 19,
+    "titulo": "Cálculo del rendimiento", "descripcion": "Conversión de volumen a masa y cálculo porcentual.",
+    "pdf_origen": "10_origen_aceites.pdf", "pagina_origen": "15-17", "tipo_visual": "visual reconstruido",
+    "archivo_original": "parte-04-extraccion/modulo-19/01_originales/p04-m07-img01-rendimiento-original.svg", "archivo_recortado": "parte-04-extraccion/modulo-19/02_recortes/p04-m07-img01-rendimiento-recorte.svg", "archivo_web": "parte-04-extraccion/modulo-19/03_web/p04-m07-img01-rendimiento-web.svg", "versiones_adicionales": "",
+    "texto_alternativo": "Dos fórmulas convierten mililitros a gramos y luego a porcentaje de rendimiento.", "epigrafe": "Primero se convierte el volumen; después se compara la masa.", "consigna_observacion": "Seguir las unidades en los dos pasos.", "estado": "Publicada", "notas_revision": "Fórmulas reconstruidas con el ejemplo fuente.", "fecha_actualizacion": "2026-08-22"
   }
 ]

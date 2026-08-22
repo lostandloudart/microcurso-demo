@@ -2,6 +2,11 @@
 
 ## 2026-08-22
 
+- Se desarrolló la Parte 4 completa: siete módulos narrativos de 20 a 30 minutos y cierre integrador.
+- Se conectó el recorrido entre seguridad, física, mezclas, destilación, métodos alternativos y rendimiento.
+- Se reconstruyeron siete visuales didácticos basados únicamente en las relaciones de las fuentes.
+- Se agregó un plan editable de extracción con cálculo automático, guardado local e impresión.
+- Se extendió el sitio a diecinueve módulos distribuidos en cuatro partes.
 - Se desarrolló la Parte 3 completa: cuatro módulos narrativos de 20 a 25 minutos y cierre integrador.
 - Se conectó el recorrido entre suelo y riego, poda, diagnóstico del cultivo y secado.
 - Se trataron dos imágenes de las fuentes y se reconstruyeron dos visuales didácticos sin agregar relaciones externas.

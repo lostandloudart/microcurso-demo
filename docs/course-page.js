@@ -2,6 +2,7 @@ const storageKey = "planta-esencia-progress-v2";
 const storyKey = "planta-esencia-oil-story-v2";
 const herbariumKey = "planta-esencia-herbarium-v2";
 const cropCalendarKey = "planta-esencia-crop-calendar-v2";
+const extractionPlanKey = "planta-esencia-extraction-plan-v2";
 let progress = {};
 try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
@@ -88,5 +89,27 @@ if (cropCalendar) {
     cropCalendar.querySelector(".save-status").textContent = "El calendario y el registro de secado quedaron guardados en este dispositivo.";
   });
   cropCalendar.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+
+const extractionPlan = document.querySelector("[data-extraction-plan]");
+if (extractionPlan) {
+  try { const saved = JSON.parse(localStorage.getItem(extractionPlanKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (extractionPlan.elements[name]) extractionPlan.elements[name].value = value; }); } catch {}
+  const calculate = () => {
+    const volume = Number(extractionPlan.elements["oil-volume"].value);
+    const density = Number(extractionPlan.elements.density.value);
+    const plantMass = Number(extractionPlan.elements["plant-mass"].value);
+    if (volume > 0 && density > 0) {
+      const oilMass = volume * density;
+      extractionPlan.elements["oil-mass"].value = oilMass.toFixed(3);
+      extractionPlan.elements.yield.value = plantMass > 0 ? (oilMass / plantMass * 100).toFixed(3) : "";
+    }
+  };
+  ["oil-volume", "density", "plant-mass"].forEach((name) => extractionPlan.elements[name].addEventListener("input", calculate));
+  extractionPlan.addEventListener("submit", (event) => {
+    event.preventDefault(); calculate();
+    localStorage.setItem(extractionPlanKey, JSON.stringify(Object.fromEntries(new FormData(extractionPlan))));
+    extractionPlan.querySelector(".save-status").textContent = "El proceso de extracción quedó guardado en este dispositivo.";
+  });
+  extractionPlan.querySelector("[data-print]")?.addEventListener("click", () => print());
 }
 refresh();

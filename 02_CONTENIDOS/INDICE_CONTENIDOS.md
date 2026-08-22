@@ -26,4 +26,15 @@ Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 
 4. [Secar sin perder la esencia](parte-03-cultivar-y-cosechar-el-aroma/modulo-12.md) · 25 min
 5. [Cierre integrador: el calendario de una parcela aromática](parte-03-cultivar-y-cosechar-el-aroma/cierre.md)
 
-Las partes 4 a 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.
+## Parte 4 · Del vegetal a la esencia — publicada
+
+1. [Antes de encender nada: higiene y seguridad](parte-04-del-vegetal-a-la-esencia/modulo-13.md) · 20 min
+2. [La física que hace posible el alambique](parte-04-del-vegetal-a-la-esencia/modulo-14.md) · 25 min
+3. [Mezclas: todo lo que se puede separar](parte-04-del-vegetal-a-la-esencia/modulo-15.md) · 25 min
+4. [Destilación: el corazón del oficio](parte-04-del-vegetal-a-la-esencia/modulo-16.md) · 30 min
+5. [Vapor, vacío y fraccionamiento: elegir la destilación](parte-04-del-vegetal-a-la-esencia/modulo-17.md) · 25 min
+6. [Cuando destilar no alcanza: disolventes, CO₂ y prensado](parte-04-del-vegetal-a-la-esencia/modulo-18.md) · 25 min
+7. [¿Cuánto sale? Calcular el rendimiento](parte-04-del-vegetal-a-la-esencia/modulo-19.md) · 25 min
+8. [Cierre integrador: diseñá una extracción completa](parte-04-del-vegetal-a-la-esencia/cierre.md)
+
+Las partes 5 y 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.
