@@ -18,4 +18,12 @@ Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 
 4. [El herbario: tu archivo de referencia](parte-02-aprender-a-leer-la-planta/modulo-08.md) · 25 min
 5. [Cierre integrador: tu primer archivo botánico](parte-02-aprender-a-leer-la-planta/cierre.md)
 
-Las partes 3 a 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.
+## Parte 3 · Cultivar y cosechar el aroma — publicada
+
+1. [Suelo, agua y abono: cultivar sin diluir el aroma](parte-03-cultivar-y-cosechar-el-aroma/modulo-09.md) · 25 min
+2. [Cortar para que rinda: poda y pinzado](parte-03-cultivar-y-cosechar-el-aroma/modulo-10.md) · 25 min
+3. [Defender el cultivo sin arruinar la cosecha](parte-03-cultivar-y-cosechar-el-aroma/modulo-11.md) · 20 min
+4. [Secar sin perder la esencia](parte-03-cultivar-y-cosechar-el-aroma/modulo-12.md) · 25 min
+5. [Cierre integrador: el calendario de una parcela aromática](parte-03-cultivar-y-cosechar-el-aroma/cierre.md)
+
+Las partes 4 a 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.

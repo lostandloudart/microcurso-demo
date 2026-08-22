@@ -1,6 +1,7 @@
 const storageKey = "planta-esencia-progress-v2";
 const storyKey = "planta-esencia-oil-story-v2";
 const herbariumKey = "planta-esencia-herbarium-v2";
+const cropCalendarKey = "planta-esencia-crop-calendar-v2";
 let progress = {};
 try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
@@ -76,5 +77,16 @@ if (herbarium) {
     herbarium.querySelector(".save-status").textContent = "Las tres fichas quedaron guardadas en este dispositivo.";
   });
   herbarium.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+
+const cropCalendar = document.querySelector("[data-crop-calendar]");
+if (cropCalendar) {
+  try { const saved = JSON.parse(localStorage.getItem(cropCalendarKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (cropCalendar.elements[name]) cropCalendar.elements[name].value = value; }); } catch {}
+  cropCalendar.addEventListener("submit", (event) => {
+    event.preventDefault();
+    localStorage.setItem(cropCalendarKey, JSON.stringify(Object.fromEntries(new FormData(cropCalendar))));
+    cropCalendar.querySelector(".save-status").textContent = "El calendario y el registro de secado quedaron guardados en este dispositivo.";
+  });
+  cropCalendar.querySelector("[data-print]")?.addEventListener("click", () => print());
 }
 refresh();

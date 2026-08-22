@@ -1,5 +1,13 @@
 # Control de cambios
 
+## 2026-08-22
+
+- Se desarrolló la Parte 3 completa: cuatro módulos narrativos de 20 a 25 minutos y cierre integrador.
+- Se conectó el recorrido entre suelo y riego, poda, diagnóstico del cultivo y secado.
+- Se trataron dos imágenes de las fuentes y se reconstruyeron dos visuales didácticos sin agregar relaciones externas.
+- Se agregó un calendario editable para cuatro especies y un registro de secado con guardado local e impresión.
+- Se extendió el generador, el progreso y la navegación para publicar doce módulos distribuidos en tres partes.
+
 ## 2026-08-20
 
 - Se desarrolló y publicó la Parte 2 completa: cuatro módulos narrativos de 20 a 30 minutos y cierre integrador.
