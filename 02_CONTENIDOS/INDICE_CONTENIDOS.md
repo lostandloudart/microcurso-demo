@@ -37,4 +37,17 @@ Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 
 7. [¿Cuánto sale? Calcular el rendimiento](parte-04-del-vegetal-a-la-esencia/modulo-19.md) · 25 min
 8. [Cierre integrador: diseñá una extracción completa](parte-04-del-vegetal-a-la-esencia/cierre.md)
 
-Las partes 5 y 6 están definidas en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollarán módulo por módulo.
+## Parte 5 · Reconocer, mezclar y usar con criterio — publicada
+
+1. [La química del aroma en palabras simples](parte-05-reconocer-mezclar-y-usar/modulo-20.md) · 25 min
+2. [Cromatografía: la huella digital de un aceite](parte-05-reconocer-mezclar-y-usar/modulo-21.md) · 25 min
+3. [Calidad, adulteración y conservación](parte-05-reconocer-mezclar-y-usar/modulo-22.md) · 20 min
+4. [Diluir bien: aceites vehiculares y proporciones](parte-05-reconocer-mezclar-y-usar/modulo-23.md) · 25 min
+5. [El olfato, la memoria y un límite honesto](parte-05-reconocer-mezclar-y-usar/modulo-24.md) · 25 min
+6. [Notas altas, medias y base: construir una fragancia](parte-05-reconocer-mezclar-y-usar/modulo-25.md) · 25 min
+7. [Preparaciones cosméticas y ambientales](parte-05-reconocer-mezclar-y-usar/modulo-26.md) · 25 min
+8. [El contacto: masaje con aceites esenciales](parte-05-reconocer-mezclar-y-usar/modulo-27.md) · 20 min
+9. [Contraindicaciones: cuándo no](parte-05-reconocer-mezclar-y-usar/modulo-28.md) · 20 min
+10. [Cierre integrador: construí una mezcla defendible](parte-05-reconocer-mezclar-y-usar/cierre.md)
+
+La Parte 6 está definida en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollará módulo por módulo.
