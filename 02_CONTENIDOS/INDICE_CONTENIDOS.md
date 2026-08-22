@@ -50,4 +50,11 @@ Esta carpeta responde al guion curricular V2: **6 partes, 31 módulos y 12 h 30 
 9. [Contraindicaciones: cuándo no](parte-05-reconocer-mezclar-y-usar/modulo-28.md) · 20 min
 10. [Cierre integrador: construí una mezcla defendible](parte-05-reconocer-mezclar-y-usar/cierre.md)
 
-La Parte 6 está definida en `00_GESTION/GUION_MODULOS_V2.md` y se desarrollará módulo por módulo.
+## Parte 6 · Del aroma al emprendimiento — publicada
+
+1. [La esencia que nace como subproducto](parte-06-del-aroma-al-emprendimiento/modulo-29.md) · 20 min
+2. [Ventajas y límites de la agroindustria esenciera](parte-06-del-aroma-al-emprendimiento/modulo-30.md) · 25 min
+3. [Mercado, nichos y responsabilidad](parte-06-del-aroma-al-emprendimiento/modulo-31.md) · 25 min
+4. [Cierre integrador: tu proyecto de la planta a la esencia](parte-06-del-aroma-al-emprendimiento/cierre.md)
+
+Las seis partes están publicadas. El recorrido activo suma 31 módulos y seis cierres integradores.

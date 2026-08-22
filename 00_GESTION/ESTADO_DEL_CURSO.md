@@ -11,9 +11,9 @@ Actualizado: 22 de agosto de 2026.
 | Parte 3 | 4 módulos y cierre publicados | Revisar con lectores de prueba |
 | Parte 4 | 7 módulos y cierre publicados | Revisar con lectores de prueba |
 | Parte 5 | 9 módulos y cierre publicados | Revisar con lectores de prueba |
-| Parte 6 | Temario visible, contenido pendiente | Desarrollar módulo por módulo |
-| Inventario visual | 28 imágenes V2 publicadas | Agregar candidatos por módulo |
-| Sitio índice | Arquitectura V2 operativa | Publicar nuevas partes progresivamente |
+| Parte 6 | 3 módulos y proyecto final publicados | Revisar con lectores de prueba |
+| Inventario visual | 31 imágenes V2 publicadas | Revisar y reemplazar candidatas cuando corresponda |
+| Sitio índice | Curso completo: 31 módulos en 6 partes | Mantener contenidos y accesibilidad |
 | Versión anterior | Conservada en `ARCHIVO_V1` | No mezclar con el sitio activo |
 
 ## Convención de estados
