@@ -2,6 +2,10 @@
 
 ## 2026-08-22
 
+- Se desarrolló la Parte 6 completa: tres módulos narrativos de 20 a 25 minutos y proyecto final del curso.
+- Se conectaron subproductos, viabilidad, nichos y responsabilidad con el recorrido previo desde la planta hasta la fórmula cosmética.
+- Se reconstruyeron tres visuales didácticos y se agregó una ficha integral con guardado local e impresión.
+- Se completó el sitio con treinta y un módulos, seis cierres integradores y las seis partes disponibles.
 - Se desarrolló la Parte 5 completa: nueve módulos narrativos de 20 a 25 minutos y cierre integrador.
 - Se conectó composición, cromatografía, conservación, dilución, percepción, perfumería, formatos cosméticos, contacto y contraindicaciones.
 - Se reconstruyeron nueve visuales didácticos y se agregó una ficha de mezcla con suma automática de gotas.

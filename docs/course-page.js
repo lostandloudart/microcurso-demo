@@ -4,6 +4,7 @@ const herbariumKey = "planta-esencia-herbarium-v2";
 const cropCalendarKey = "planta-esencia-crop-calendar-v2";
 const extractionPlanKey = "planta-esencia-extraction-plan-v2";
 const blendPlanKey = "planta-esencia-blend-plan-v2";
+const finalProjectKey = "planta-esencia-final-project-v2";
 let progress = {};
 try { progress = JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { progress = {}; }
 
@@ -128,5 +129,16 @@ if (blendPlan) {
     blendPlan.querySelector(".save-status").textContent = "La mezcla quedó guardada en este dispositivo.";
   });
   blendPlan.querySelector("[data-print]")?.addEventListener("click", () => print());
+}
+
+const finalProject = document.querySelector("[data-final-project]");
+if (finalProject) {
+  try { const saved = JSON.parse(localStorage.getItem(finalProjectKey)) || {}; Object.entries(saved).forEach(([name, value]) => { if (finalProject.elements[name]) finalProject.elements[name].value = value; }); } catch {}
+  finalProject.addEventListener("submit", (event) => {
+    event.preventDefault();
+    localStorage.setItem(finalProjectKey, JSON.stringify(Object.fromEntries(new FormData(finalProject))));
+    finalProject.querySelector(".save-status").textContent = "El proyecto completo quedó guardado en este dispositivo.";
+  });
+  finalProject.querySelector("[data-print]")?.addEventListener("click", () => print());
 }
 refresh();

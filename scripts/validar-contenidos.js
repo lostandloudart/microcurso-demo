@@ -9,7 +9,8 @@ const moduleFiles=[
   ...[5,6,7,8].map((n)=>path.join(root,"02_CONTENIDOS","parte-02-aprender-a-leer-la-planta",`modulo-${String(n).padStart(2,"0")}.md`)),
   ...[9,10,11,12].map((n)=>path.join(root,"02_CONTENIDOS","parte-03-cultivar-y-cosechar-el-aroma",`modulo-${String(n).padStart(2,"0")}.md`)),
   ...[13,14,15,16,17,18,19].map((n)=>path.join(root,"02_CONTENIDOS","parte-04-del-vegetal-a-la-esencia",`modulo-${String(n).padStart(2,"0")}.md`)),
-  ...[20,21,22,23,24,25,26,27,28].map((n)=>path.join(root,"02_CONTENIDOS","parte-05-reconocer-mezclar-y-usar",`modulo-${String(n).padStart(2,"0")}.md`))
+  ...[20,21,22,23,24,25,26,27,28].map((n)=>path.join(root,"02_CONTENIDOS","parte-05-reconocer-mezclar-y-usar",`modulo-${String(n).padStart(2,"0")}.md`)),
+  ...[29,30,31].map((n)=>path.join(root,"02_CONTENIDOS","parte-06-del-aroma-al-emprendimiento",`modulo-${String(n).padStart(2,"0")}.md`))
 ];
 for (const file of moduleFiles) {
   if (!fs.existsSync(file)) { errors.push(`Falta ${file}`); continue; }
@@ -22,11 +23,11 @@ for (const file of moduleFiles) {
 const html=[];
 function walk(dir){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){if(entry.isDirectory()&&entry.name==="temas")continue;const file=path.join(dir,entry.name);if(entry.isDirectory())walk(file);else if(entry.name.endsWith(".html"))html.push(file);}}
 walk(path.join(root,"docs"));
-if(html.length!==40) errors.push(`Se esperaban 40 HTML y se encontraron ${html.length}.`);
+if(html.length!==44) errors.push(`Se esperaban 44 HTML y se encontraron ${html.length}.`);
 for(const file of html){const source=fs.readFileSync(file,"utf8");for(const match of source.matchAll(/(?:href|src)="([^"]+)"/g)){const ref=match[1];if(/^(?:https?:|#|mailto:)/.test(ref))continue;const clean=ref.split("?")[0].split("#")[0];if(!clean)continue;let target=path.resolve(path.dirname(file),clean);if(fs.existsSync(target)&&fs.statSync(target).isDirectory())target=path.join(target,"index.html");if(!fs.existsSync(target))errors.push(`${path.relative(root,file)}: enlace roto ${ref}`);}}
 const json=JSON.parse(fs.readFileSync(path.join(root,"03_IMAGENES","imagenes.json"),"utf8"));
-for(const item of json.filter((i)=>/^p0[12345]-/.test(String(i.id)))){for(const key of ["archivo_original","archivo_recortado","archivo_web"]){if(!fs.existsSync(path.join(root,"03_IMAGENES",item[key])))errors.push(`Falta imagen ${item[key]}`);}if(!item.texto_alternativo||!item.consigna_observacion)errors.push(`${item.id}: accesibilidad u observación incompleta.`);}
-console.log(`Partes 1 a 5: ${moduleFiles.length} módulos; sitio: ${html.length} páginas; errores: ${errors.length}; advertencias: ${warnings.length}.`);
+for(const item of json.filter((i)=>/^p0[123456]-/.test(String(i.id)))){for(const key of ["archivo_original","archivo_recortado","archivo_web"]){if(!fs.existsSync(path.join(root,"03_IMAGENES",item[key])))errors.push(`Falta imagen ${item[key]}`);}if(!item.texto_alternativo||!item.consigna_observacion)errors.push(`${item.id}: accesibilidad u observación incompleta.`);}
+console.log(`Partes 1 a 6: ${moduleFiles.length} módulos; sitio: ${html.length} páginas; errores: ${errors.length}; advertencias: ${warnings.length}.`);
 warnings.forEach((v)=>console.warn(`AVISO ${v}`));
 errors.forEach((v)=>console.error(`ERROR ${v}`));
 if(errors.length)process.exit(1);
